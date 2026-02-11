@@ -1,0 +1,134 @@
+---
+import { Icon } from "astro-icon/components";
+
+const programs = [
+  {
+    title: "Ciclo Vacacional",
+    description:
+      "Programa intensivo de fortalecimiento académico durante el periodo vacacional.",
+    points: [
+      "Desde 1° primaria hasta 5° secundaria",
+      "Grupos especializados COAR",
+      "Preparación preuniversitaria",
+    ],
+    icon: "heroicons:sun",
+  },
+  {
+    title: "Ciclo Semestral",
+    description:
+      "Formación académica continua con seguimiento personalizado.",
+    points: [
+      "Refuerzo escolar integral",
+      "Énfasis en Matemática",
+      "Preparación progresiva para exámenes",
+    ],
+    icon: "heroicons:calendar-days",
+  },
+  {
+    title: "Computación",
+    description:
+      "Desarrollo de habilidades digitales y tecnológicas.",
+    points: [
+      "Fundamentos informáticos",
+      "Herramientas digitales",
+      "Pensamiento lógico",
+    ],
+    icon: "heroicons:computer-desktop",
+  },
+];
+---
+
+<section id="programas" class="py-28 bg-white">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
+        Nuestros <span class="text-primary-600">Programas Académicos</span>
+      </h2>
+
+      <p class="mt-6 text-lg text-neutral-600">
+        Formación especializada en Matemática, complementada con Comunicación
+        y desarrollo en Computación para una preparación integral.
+      </p>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-10">
+
+      {programs.map((program) => (
+        <div class="group bg-neutral-50 rounded-3xl p-8 hover:bg-white hover:shadow-xl transition-all duration-300">
+
+          <!-- Icono -->
+          <div class="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center mb-6 group-hover:bg-primary-100 transition">
+            <Icon name={program.icon} class="w-7 h-7 text-primary-600" />
+          </div>
+
+          <h3 class="text-xl font-semibold text-neutral-900">
+            {program.title}
+          </h3>
+
+          <p class="mt-4 text-neutral-600 leading-relaxed">
+            {program.description}
+          </p>
+
+          <ul class="mt-6 space-y-3 text-sm text-neutral-700">
+            {program.points.map((point) => (
+              <li class="flex items-start gap-2">
+                <span class="w-2 h-2 bg-primary-500 rounded-full mt-2"></span>
+                {point}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#contacto"
+            class="inline-block mt-8 text-primary-600 font-medium hover:text-primary-700 transition"
+          >
+            Solicitar información →
+          </a>
+
+        </div>
+      ))}
+
+    </div>
+
+    <!-- 🔹 Bloque Matemática Destacado -->
+    <section class="mt-24">
+
+      <div class="max-w-5xl mx-auto px-6 text-center">
+
+        <h3 class="text-2xl md:text-3xl font-bold text-neutral-900">
+          Especialización en 
+          <span class="text-primary-600">Matemática</span>
+        </h3>
+
+        <p class="mt-6 text-neutral-600 text-lg max-w-3xl mx-auto">
+          Nuestra academia se caracteriza por un enfoque intensivo en Matemática,
+          fortaleciendo el razonamiento lógico y la capacidad analítica de cada estudiante.
+          Complementamos con Comunicación para asegurar un desarrollo académico equilibrado.
+        </p>
+
+        <!-- Imagen destacada -->
+        <div class="mt-12 relative">
+
+          <!-- Glow suave -->
+          <div class="absolute inset-0 bg-primary-100 rounded-3xl blur-3xl opacity-40"></div>
+
+          <img
+            src="/imgAc.jpeg"
+            alt="Estudiantes resolviendo ejercicios matemáticos"
+            class="relative rounded-3xl shadow-xl w-full object-cover"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+
+</section>

@@ -1,0 +1,85 @@
+---
+import { Icon } from "astro-icon/components";
+
+const stats = [
+  {
+    value: "10+",
+    label: "Años de experiencia",
+    description: "Pioneros en formación académica en Atalaya",
+    icon: "heroicons:calendar-days",
+  },
+  {
+    value: "500+",
+    label: "Estudiantes formados",
+    description: "Impactando el futuro de nuestra provincia",
+    icon: "heroicons:users",
+  },
+  {
+    value: "Ingresos COAR",
+    label: "Excelencia comprobada",
+    description: "Estudiantes admitidos al COAR",
+    icon: "heroicons:academic-cap",
+  },
+  {
+    value: "Universidades",
+    label: "Ingreso superior",
+    description: "Preparación para universidades del país",
+    icon: "heroicons:building-library",
+  },
+];
+---
+
+<section id="stats" class="relative py-28 bg-neutral-50 overflow-hidden">
+
+  <!-- Glow suave -->
+  <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-100 blur-[160px] opacity-30 rounded-full"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900 leading-tight">
+  Más de 10 años formando estudiantes en la
+  <span class="text-primary-600">provincia de Atalaya</span>,
+  región Ucayali
+</h2>
+
+<p class="mt-6 text-lg text-neutral-600">
+  Somos una institución educativa referente en la preparación
+  para el COAR y universidades del país, comprometidos con el
+  desarrollo académico de nuestra región.
+</p>
+
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      {stats.map((item) => (
+        <div class="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+
+          <div class="w-12 h-12 rounded-2xl bg-primary-50 flex items-center justify-center mb-6 group-hover:bg-primary-100 transition">
+            <Icon name={item.icon} class="w-6 h-6 text-primary-600" />
+          </div>
+
+          <h3 class="text-3xl font-bold text-neutral-900">
+            {item.value}
+          </h3>
+
+          <p class="mt-2 font-semibold text-neutral-800">
+            {item.label}
+          </p>
+
+          <p class="mt-2 text-sm text-neutral-500 leading-relaxed">
+            {item.description}
+          </p>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,40 @@
+<section id="galeria" class="py-28 bg-neutral-50">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center max-w-3xl mx-auto mb-16">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
+        Nuestra <span class="text-primary-600">Galería</span>
+      </h2>
+
+      <p class="mt-6 text-neutral-600 text-lg">
+        Conoce algunos momentos de nuestras clases, talleres y logros académicos.
+      </p>
+
+    </div>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+      {[
+        "/galeria1.jpeg",
+        "/galeria2.jpeg",
+        "/galeria3.jpeg",
+        "/galeria4.jpeg",
+        "/galeria5.jpeg",
+        "/galeria6.jpeg",
+      ].map((img) => (
+        <div class="overflow-hidden rounded-2xl shadow-md group">
+          <img
+            src={img}
+            class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
+            alt="Actividad académica"
+          />
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</section>

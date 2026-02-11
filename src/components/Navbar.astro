@@ -1,0 +1,124 @@
+---
+import { Icon } from "astro-icon/components";
+
+const navItems = [
+  { label: "Inicio", href: "/" },
+  { label: "Programas", href: "/#programas" },
+  { label: "Metodología", href: "/#metodologia" },
+  { label: "Galería", href: "/#galeria" },
+  { label: "Contacto", href: "/#contacto" },
+];
+
+const email = "info@academianumberone.com";
+---
+
+<header class="fixed top-0 w-full bg-white z-50">
+
+  <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/">
+      <img src="/Logo Academia SF.png" class="h-14 w-auto" />
+    </a>
+
+    <!-- Desktop SOLO lg -->
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-700">
+
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="hover:text-primary-600 transition-colors duration-200"
+        >
+          {item.label}
+        </a>
+      ))}
+
+    </nav>
+
+    <!-- Right SOLO lg -->
+    <div class="hidden lg:flex items-center gap-4">
+
+      <a
+        href="/#contacto"
+        class="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-2.5 rounded-full font-medium hover:bg-primary-700 transition"
+      >
+        <Icon name="heroicons:academic-cap" class="w-5 h-5" />
+        Matrícula
+      </a>
+
+      <!-- <a
+        href={`mailto:${email}`}
+        class="inline-flex items-center gap-2 text-neutral-600 text-sm hover:text-primary-600 transition"
+      >
+        <Icon name="heroicons:envelope" class="w-4 h-4" />
+        {email}
+      </a> -->
+
+    </div>
+
+    <!-- Mobile -->
+    <button id="menu-btn" class="lg:hidden">
+      <Icon name="heroicons:bars-3" class="w-7 h-7 text-neutral-700" />
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-40 hidden flex-col">
+
+    <div class="flex justify-between items-center px-6 py-6">
+
+      <img src="/Logo Academia SF.png" class="h-12 w-auto" />
+
+      <button id="close-btn">
+        <Icon name="heroicons:x-mark" class="w-7 h-7 text-neutral-700" />
+      </button>
+
+    </div>
+
+    <div class="flex-1 flex flex-col justify-center items-center gap-8 text-xl font-medium">
+
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="text-neutral-800 hover:text-primary-600 transition"
+        >
+          {item.label}
+        </a>
+      ))}
+
+      <a
+        href="/#matricula"
+        class="mt-6 bg-primary-600 text-white px-8 py-3 rounded-full"
+      >
+        Matrícula
+      </a>
+
+      <a
+        href={`mailto:${email}`}
+        class="text-neutral-600 text-sm mt-2"
+      >
+        {email}
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.remove("hidden");
+    menu?.classList.add("flex");
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    menu?.classList.add("hidden");
+    menu?.classList.remove("flex");
+  });
+</script>

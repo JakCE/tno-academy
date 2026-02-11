@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+
+const methods = [
+  {
+    title: "Enfoque intensivo en Matemática",
+    description:
+      "Desarrollamos el razonamiento lógico y la resolución estratégica de problemas desde primaria hasta nivel preuniversitario.",
+    icon: "heroicons:calculator",
+  },
+  {
+    title: "Seguimiento personalizado",
+    description:
+      "Monitoreamos el avance académico de cada estudiante mediante evaluaciones constantes y retroalimentación continua.",
+    icon: "heroicons:clipboard-document-check",
+  },
+  {
+    title: "Preparación especializada COAR y Universidad",
+    description:
+      "Simulacros, práctica dirigida y entrenamiento enfocado en exámenes de alto nivel.",
+    icon: "heroicons:academic-cap",
+  },
+  {
+    title: "Formación integral",
+    description:
+      "Complementamos Matemática con Comunicación y Computación para un desarrollo académico equilibrado.",
+    icon: "heroicons:computer-desktop",
+  },
+];
+---
+
+<section id="metodologia" class="py-28 bg-white">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Encabezado -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+
+      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
+        Nuestra <span class="text-primary-600">Metodología</span>
+      </h2>
+
+      <p class="mt-6 text-lg text-neutral-600">
+        Más que clases, brindamos una preparación estructurada,
+        estratégica y orientada a resultados reales.
+      </p>
+
+    </div>
+
+    <!-- Grid Metodología -->
+    <div class="grid md:grid-cols-2 gap-12">
+
+      {methods.map((method) => (
+        <div class="flex gap-6 group">
+
+          <!-- Icono -->
+          <div class="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center flex-shrink-0 group-hover:bg-primary-100 transition">
+            <Icon name={method.icon} class="w-7 h-7 text-primary-600" />
+          </div>
+
+          <!-- Texto -->
+          <div>
+            <h3 class="text-xl font-semibold text-neutral-900">
+              {method.title}
+            </h3>
+
+            <p class="mt-3 text-neutral-600 leading-relaxed">
+              {method.description}
+            </p>
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+</section>

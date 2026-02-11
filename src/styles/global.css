@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* 🎨 Sistema de colores mejorado - Tailwind 4 */
+@theme {
+  /* Primary - Azul profesional moderno */
+  --color-primary-50:  #f0f7ff;
+  --color-primary-100: #e0efff;
+  --color-primary-200: #bde3ff;
+  --color-primary-300: #7acfff;
+  --color-primary-400: #38b6ff;
+  --color-primary-500: #0099ff;
+  --color-primary-600: #0077cc;
+  --color-primary-700: #0055a3;
+  --color-primary-800: #003d7a;
+  --color-primary-900: #002652;
+
+  /* Neutrals - Grises modernos */
+  --color-neutral-50:  #fafbfc;
+  --color-neutral-100: #f3f5f7;
+  --color-neutral-200: #e5e9ee;
+  --color-neutral-300: #d4dce5;
+  --color-neutral-400: #b5c4d4;
+  --color-neutral-500: #8b99a8;
+  --color-neutral-600: #5f6b79;
+  --color-neutral-700: #3e4957;
+  --color-neutral-800: #1f252e;
+  --color-neutral-900: #0a0e14;
+
+  /* Accent - Verde esmeralda (para highlighting) */
+  --color-accent-400: #10d981;
+  --color-accent-500: #059669;
+  --color-accent-600: #047857;
+
+  /* Utilities */
+  --color-success: #10d981;
+  --color-warning: #f59e0b;
+  --color-error:   #ef4444;
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
