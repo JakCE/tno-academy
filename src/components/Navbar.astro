@@ -18,11 +18,18 @@ const email = "info@academianumberone.com";
 
     <!-- Logo -->
     <a href="/">
-      <img src="/Logo Academia SF.png" class="h-14 w-auto" />
+      <img 
+        loading="lazy"
+        src="/Logo Academia SF.png" 
+        alt="Academia The Number One en Atalaya Ucayali"
+        width="160"
+        height="56"
+        class="h-14 w-auto"
+      />
     </a>
 
     <!-- Desktop SOLO lg -->
-    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-700">
+    <nav aria-label="Navegación principal" class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-700">
 
       {navItems.map((item) => (
         <a
@@ -68,7 +75,14 @@ const email = "info@academianumberone.com";
 
     <div class="flex justify-between items-center px-6 py-6">
 
-      <img src="/Logo Academia SF.png" class="h-12 w-auto" />
+      <img 
+        loading="lazy"
+        src="/Logo Academia SF.png" 
+        alt="Academia The Number One en Atalaya Ucayali"
+        width="160"
+        height="56"
+        class="h-14 w-auto"
+      />
 
       <button id="close-btn">
         <Icon name="heroicons:x-mark" class="w-7 h-7 text-neutral-700" />
@@ -88,7 +102,7 @@ const email = "info@academianumberone.com";
       ))}
 
       <a
-        href="/#matricula"
+        href="/#contacto"
         class="mt-6 bg-primary-600 text-white px-8 py-3 rounded-full"
       >
         Matrícula

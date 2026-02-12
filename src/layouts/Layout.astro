@@ -18,10 +18,34 @@ const {
   <meta name="description" content={description} />
   <meta name="robots" content="index, follow" />
 
+  <!-- Canonical -->
+  <link rel="canonical" href={Astro.url.href} />
+
   <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content={Astro.url.href} />
+  <meta property="og:image" content="https://tno-academy.vercel.app/Logo Academia SF.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- SEO Local (MUY IMPORTANTE PARA PERÚ) -->
+  <script type="application/ld+json">
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Academia The Number One",
+    "url": "https://tno-academy.vercel.app",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Atalaya",
+      "addressRegion": "Ucayali",
+      "addressCountry": "PE"
+    }
+  })}
+  </script>
 
   <link rel="icon" href="/icono.ico" />
 </head>

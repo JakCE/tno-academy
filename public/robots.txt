@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tno-academy.vercel.app/sitemap-index.xml
