@@ -1,24 +1,33 @@
 ---
+// src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import Stats from "../components/Stats.astro";
 import Programas from "../components/Programas.astro";
 import CTA from "../components/CTA.astro";
-import Metodologia from "../components/Metodologia.astro"
+import Metodologia from "../components/Metodologia.astro";
 import Galeria from "../components/Galeria.astro";
+import AudioPlayer from "../components/AudioPlayer.astro";
 import "../styles/global.css"
 ---
 
 <Layout
-  title="Academia The Number One | Educación de Calidad"
-  description="Academia educativa enfocada en reforzamiento escolar y preparación preuniversitaria. Unidos para educar."
+  title="Academia The Number One | Educación de Calidad en Atalaya, Ucayali"
+  description="Nivelación Primaria y Secundaria, preparación para COAR, Beca 18 y Preuniversitario en Atalaya, Ucayali. Más de 10 años formando líderes."
 >
-
   <Hero />
+
+  <!-- Sección reproductor de canción -->
+  <section class="bg-blue-50 border-y border-blue-100 py-8 px-4">
+    <p class="text-center text-sm text-blue-400 font-semibold tracking-wide mb-4">
+      🎵 Escucha nuestra canción oficial
+    </p>
+    <AudioPlayer audioSrc="/audio/cancion-tno.mpeg" />
+  </section>
+
   <Stats />
   <Programas />
   <Metodologia />
   <Galeria />
   <CTA />
-
 </Layout>

@@ -1,68 +1,100 @@
 ---
+// src/layouts/Layout.astro
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import Analytics from '@vercel/analytics/astro'
+import AnnouncementModal from "../components/AnnouncementModal.astro";
+import Analytics from "@vercel/analytics/astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
 
 const {
-  title = "Academia The Number One",
+  title       = "Academia The Number One",
   description = "Academia educativa enfocada en la excelencia académica y formación integral.",
 } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <meta name="robots" content="index, follow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href={Astro.url.href} />
+    <!-- Canonical -->
+    <link rel="canonical" href={Astro.url.href} />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url.href} />
-  <meta property="og:image" content="https://tno-academy.vercel.app/Logo Academia SF.png" />
+    <!-- Open Graph -->
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={Astro.url.href} />
+    <meta property="og:image"       content="https://tno-academy.vercel.app/Logo Academia SF.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- SEO Local (MUY IMPORTANTE PARA PERÚ) -->
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "Academia The Number One",
-    "url": "https://tno-academy.vercel.app",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Atalaya",
-      "addressRegion": "Ucayali",
-      "addressCountry": "PE"
-    }
-  })}
-  </script>
+    <!-- SEO Local mejorado -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Academia The Number One",
+        "url": "https://tno-academy.vercel.app",
+        "telephone": ["+51929469555", "+51949544537", "+51907383283"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jr. Rímac Mz 23 Lt 1f",
+          "addressLocality": "Atalaya",
+          "addressRegion": "Ucayali",
+          "addressCountry": "PE"
+        },
+        "description": "Academia de reforzamiento escolar y preparación preuniversitaria en Atalaya, Ucayali. COAR, Beca 18, Matemáticas y Letras."
+      })}
+    </script>
 
-  <link rel="icon" href="/icono.ico" />
-</head>
+    <!-- Fuentes: Sora (títulos) + Nunito (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<body class="font-sans bg-white text-gray-800 antialiased">
+    <link rel="icon" href="/icono.ico" />
 
-  <!-- Navbar -->
-  <Navbar />
+    <!-- Tailwind: fuentes como variables CSS para usarlas en tailwind.config -->
+    <style>
+      :root {
+        --font-heading: 'Sora', sans-serif;
+        --font-body:    'Nunito', sans-serif;
+      }
+      body { font-family: var(--font-body); }
+      h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+    </style>
+  </head>
 
-  <!-- Contenido -->
-  <main class="min-h-screen">
-    <slot />
-  </main>
+  <body class="bg-white text-gray-800 antialiased">
 
-  <!-- Footer -->
-  <Footer />
-  <Analytics />
-</body>
+    <!-- Modal de anuncio (una vez por sesión) -->
+    <AnnouncementModal />
+
+    <!-- Navbar -->
+    <Navbar />
+
+    <!-- Contenido principal -->
+    <main class="min-h-screen">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <Analytics />
+  </body>
 </html>

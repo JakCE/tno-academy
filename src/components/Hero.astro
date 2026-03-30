@@ -1,69 +1,162 @@
-<section id="inicio" class="relative pt-36 pb-28 bg-white overflow-hidden">
+---
+// src/components/Hero.astro
+---
 
-  <!-- Glow Background -->
-  <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-100 rounded-full blur-[140px] opacity-40"></div>
+<section id="inicio" class="relative min-h-[92vh] flex items-center pt-24 pb-20 bg-white overflow-hidden">
 
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center relative z-10">
+  <!-- Fondo decorativo: blob azul top-right -->
+  <div class="absolute -top-32 -right-32 w-[640px] h-[640px] bg-blue-100 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
 
-    <!-- Texto -->
-    <div class="space-y-8">
+  <!-- Fondo decorativo: blob sutil bottom-left -->
+  <div class="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] opacity-60 pointer-events-none"></div>
 
-      <!-- Tag superior -->
-      <div class="inline-flex items-center gap-2 bg-primary-50 text-primary-600 px-4 py-2 rounded-full text-sm font-medium">
-        <span class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
-        Educación con excelencia
+  <!-- Grid decorativo muy sutil -->
+  <div
+    class="absolute inset-0 opacity-[0.025] pointer-events-none"
+    style="background-image: linear-gradient(#2563eb 1px, transparent 1px), linear-gradient(to right, #2563eb 1px, transparent 1px); background-size: 48px 48px;"
+  ></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+
+      <!-- ── Columna de texto ── -->
+      <div class="space-y-7 order-2 lg:order-1">
+
+        <!-- Badge animado -->
+        <div
+          data-reveal
+          class="inline-flex items-center gap-2.5 bg-blue-50 border border-blue-200 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold"
+        >
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-60"></span>
+            <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600"></span>
+          </span>
+          Inscripciones abiertas — Inicia el 6 de abril
+        </div>
+
+        <!-- Título -->
+        <div data-reveal data-reveal-delay="1">
+          <h1 class="text-3xl sm:text-5xl xl:text-6xl font-extrabold leading-[1.08] tracking-tight text-neutral-900">
+            Unidos para educar,
+            <br />
+            <span class="text-blue-700 relative">
+              formando líderes
+              <!-- Subrayado decorativo -->
+              <svg class="absolute -bottom-0 left-0 w-full" height="6" viewBox="0 0 300 6" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0 5 Q75 1 150 4 Q225 7 300 3" stroke="#93c5fd" stroke-width="3" fill="none" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <br />
+            del mañana
+          </h1>
+        </div>
+
+        <!-- Descripción -->
+        <p
+          data-reveal data-reveal-delay="2"
+          class="text-lg text-neutral-500 leading-relaxed max-w-lg"
+        >
+          En Academia <strong class="text-neutral-700 font-semibold">The Number One</strong> brindamos formación académica sólida,
+          acompañamiento personalizado y metodología enfocada en resultados —
+          preparando estudiantes de Atalaya para los retos del futuro.
+        </p>
+
+        <!-- Cursos rápidos -->
+        <div data-reveal data-reveal-delay="2" class="flex flex-wrap gap-2">
+          {["Aritmética", "Álgebra", "Geometría", "Comunicación", "COAR", "Beca 18"].map(tag => (
+            <span class="text-xs font-semibold bg-neutral-100 text-neutral-600 px-3 py-1.5 rounded-full border border-neutral-200">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <!-- Botones -->
+        <div data-reveal data-reveal-delay="3" class="flex flex-wrap gap-3 pt-2">
+          <a
+            href="#programas"
+            class="inline-flex items-center gap-2 bg-blue-700 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-blue-800 transition-all duration-200 shadow-lg shadow-blue-700/25 hover:shadow-xl hover:shadow-blue-700/30 hover:-translate-y-0.5"
+          >
+            Ver Programas
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
+
+          <a
+            href="https://wa.me/51929469555?text=Hola,%20quiero%20información%20sobre%20las%20inscripciones"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-green-600 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-green-700 transition-all duration-200 shadow-lg shadow-green-600/20 hover:-translate-y-0.5"
+          >
+            <!-- WhatsApp icon -->
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+            WhatsApp
+          </a>
+
+          <a
+            href="#contacto"
+            class="inline-flex items-center gap-2 border-2 border-blue-200 text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-blue-50 transition-all duration-200"
+          >
+            Más información
+          </a>
+        </div>
+
+        <!-- Teléfonos rápidos -->
+        <div data-reveal data-reveal-delay="3" class="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1">
+          <span class="text-xs text-neutral-400 font-medium uppercase tracking-wider">Llámanos:</span>
+          {["929 469 555", "949 544 537", "907 383 283"].map(tel => (
+            <a
+              href={`tel:+51${tel.replace(/\s/g, "")}`}
+              class="text-sm font-bold text-blue-700 hover:text-blue-900 transition-colors"
+            >
+              {tel}
+            </a>
+          ))}
+        </div>
+
       </div>
 
-      <!-- Título -->
-      <h1 class="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight text-neutral-900">
-        Unidos para educar, <br />
-        <span class="text-primary-600">
-          formando líderes del mañana
-        </span>
-      </h1>
+      <!-- ── Columna imagen ── -->
+      <div data-reveal data-reveal-delay="1" class="relative order-1 lg:order-2">
 
-      <!-- Descripción -->
-      <p class="text-lg text-neutral-600 max-w-xl leading-relaxed">
-        En Academia The Number One brindamos formación académica sólida,
-        acompañamiento personalizado y una metodología enfocada en resultados reales,
-        preparando estudiantes para los retos del futuro.
-      </p>
+        <!-- Tarjeta flotante — logro -->
+        <div class="absolute -top-4 -left-4 z-10 bg-white rounded-2xl shadow-xl border border-neutral-100 px-4 py-3 flex items-center gap-3 hidden sm:flex">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-xl">🏆</div>
+          <div>
+            <p class="text-xs text-neutral-400 font-medium">Excelencia comprobada</p>
+            <p class="text-sm font-bold text-neutral-800">500+ estudiantes formados</p>
+          </div>
+        </div>
 
-      <!-- Botones -->
-      <div class="flex flex-wrap gap-4 pt-6">
+        <!-- Tarjeta flotante — COAR -->
+        <div class="absolute -bottom-4 -right-4 z-10 bg-blue-700 rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 hidden sm:flex">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-xl">🎓</div>
+          <div>
+            <p class="text-xs text-blue-300 font-medium">10+ años</p>
+            <p class="text-sm font-bold text-white">Formando líderes</p>
+          </div>
+        </div>
 
-        <a
-          href="#programas"
-          class="inline-flex items-center gap-2 bg-primary-600 text-white px-7 py-3 rounded-full font-medium hover:bg-primary-700 transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          Ver Programas
-        </a>
+        <!-- Imagen principal -->
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-neutral-200">
+          <img
+            src="/hero.jpeg"
+            alt="Estudiantes aprendiendo en Academia The Number One, Atalaya"
+            class="w-full object-cover aspect-[4/3]"
+          />
+          <!-- Overlay sutil -->
+          <div class="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+        </div>
 
-        <a
-          href="#contacto"
-          class="inline-flex items-center gap-2 border border-primary-200 text-primary-600 px-7 py-3 rounded-full font-medium hover:bg-primary-50 transition-all duration-300"
-        >
-          Más Información
-        </a>
+        <!-- Adorno geométrico -->
+        <div class="absolute -z-10 -bottom-6 -right-6 w-40 h-40 rounded-3xl border-4 border-blue-100 opacity-60"></div>
 
       </div>
 
     </div>
-
-    <!-- Imagen -->
-    <div class="relative">
-
-      <!-- Glow sutil detrás de imagen -->
-      <div class="absolute inset-0 bg-primary-50 rounded-3xl blur-2xl opacity-50 scale-110"></div>
-
-      <img
-        src="/hero.jpeg"
-        alt="Estudiantes aprendiendo en aula"
-        class="relative rounded-3xl shadow-2xl w-full object-cover"
-      />
-
-    </div>
-
   </div>
-
 </section>
+
+<script>
+  import "../scripts/reveal.ts";
+</script>
