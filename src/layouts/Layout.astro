@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import AnnouncementModal from "../components/AnnouncementModal.astro";
 import Analytics from "@vercel/analytics/astro";
+import FloatingActions from "../components/FloatingActions.astro";
+
 
 interface Props {
   title?: string;
@@ -94,7 +96,7 @@ const {
 
     <!-- Footer -->
     <Footer />
-
+    <FloatingActions />
     <Analytics />
   </body>
 </html>

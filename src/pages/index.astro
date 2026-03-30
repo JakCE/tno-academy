@@ -8,6 +8,8 @@ import CTA from "../components/CTA.astro";
 import Metodologia from "../components/Metodologia.astro";
 import Galeria from "../components/Galeria.astro";
 import AudioPlayer from "../components/AudioPlayer.astro";
+import FAQ from "../components/FAQ.astro";
+import Testimonios from "../components/Testimonios.astro";
 import "../styles/global.css"
 ---
 
@@ -16,7 +18,6 @@ import "../styles/global.css"
   description="Nivelación Primaria y Secundaria, preparación para COAR, Beca 18 y Preuniversitario en Atalaya, Ucayali. Más de 10 años formando líderes."
 >
   <Hero />
-
   <!-- Sección reproductor de canción -->
   <section class="bg-blue-50 border-y border-blue-100 py-8 px-4">
     <p class="text-center text-sm text-blue-400 font-semibold tracking-wide mb-4">
@@ -24,10 +25,11 @@ import "../styles/global.css"
     </p>
     <AudioPlayer audioSrc="/audio/cancion-tno.mpeg" />
   </section>
-
-  <Stats />
   <Programas />
   <Metodologia />
+  <Stats />
+  <Testimonios />
   <Galeria />
+  <FAQ />
   <CTA />
 </Layout>

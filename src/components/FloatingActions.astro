@@ -1,0 +1,110 @@
+---
+// src/components/FloatingActions.astro
+import { Icon } from "astro-icon/components";
+---
+
+<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+
+  <!-- 🔹 Botón Chat -->
+  <button
+    id="chat-btn"
+    class="group relative w-14 h-14 rounded-2xl bg-blue-700 text-white shadow-lg hover:bg-blue-800 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
+  >
+    <Icon name="heroicons:chat-bubble-left-right" class="w-6 h-6" />
+
+    <!-- Tooltip -->
+    <span class="absolute right-16 whitespace-nowrap bg-neutral-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition">
+      Chat (próximamente)
+    </span>
+  </button>
+
+  <!-- 🔹 Botón Scroll Top -->
+  <button
+    id="scrollTopBtn"
+    class="w-12 h-12 rounded-xl bg-white border border-neutral-200 text-blue-700 shadow-md hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center opacity-0 pointer-events-none"
+  >
+    <Icon name="heroicons:arrow-up" class="w-5 h-5" />
+  </button>
+
+</div>
+
+<!-- 🔹 Modal Chat (UI only) -->
+<div
+  id="chat-modal"
+  class="fixed bottom-24 right-6 z-50 w-[320px] max-w-[90vw] bg-white border border-neutral-200 rounded-2xl shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300"
+>
+
+  <!-- Header -->
+  <div class="flex items-center justify-between px-4 py-3 border-b border-neutral-100">
+    <div class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
+        💬
+      </div>
+      <div>
+        <p class="text-sm font-bold text-neutral-900">Asistente</p>
+        <p class="text-xs text-neutral-400">En construcción</p>
+      </div>
+    </div>
+
+    <button id="close-chat" class="text-neutral-400 hover:text-neutral-700">
+      ✕
+    </button>
+  </div>
+
+  <!-- Body -->
+  <div class="p-4 text-sm text-neutral-500">
+    Muy pronto podrás chatear con nosotros directamente desde aquí 🚀
+  </div>
+
+  <!-- Footer -->
+  <div class="px-4 pb-4">
+    <button class="w-full bg-blue-700 text-white py-2.5 rounded-xl text-sm font-semibold opacity-60 cursor-not-allowed">
+      En construcción
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn")!;
+  const chatBtn = document.getElementById("chat-btn")!;
+  const chatModal = document.getElementById("chat-modal")!;
+  const closeChat = document.getElementById("close-chat")!;
+
+  // 🔹 Mostrar botón scroll
+  function toggleScrollBtn() {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.remove("opacity-0", "pointer-events-none");
+      scrollBtn.classList.add("opacity-100");
+    } else {
+      scrollBtn.classList.add("opacity-0", "pointer-events-none");
+      scrollBtn.classList.remove("opacity-100");
+    }
+  }
+
+  window.addEventListener("scroll", toggleScrollBtn);
+
+  // 🔹 Scroll top
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // 🔹 Chat modal
+  chatBtn.addEventListener("click", () => {
+    chatModal.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
+    chatModal.classList.add("opacity-100", "translate-y-0");
+  });
+
+  closeChat.addEventListener("click", () => {
+    chatModal.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
+    chatModal.classList.remove("opacity-100", "translate-y-0");
+  });
+
+  // Cerrar con ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      chatModal.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
+      chatModal.classList.remove("opacity-100", "translate-y-0");
+    }
+  });
+</script>

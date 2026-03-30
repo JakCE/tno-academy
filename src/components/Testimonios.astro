@@ -1,0 +1,70 @@
+---
+// src/components/Testimonios.astro
+const testimonials = [
+  {
+    name: "María Campos",
+    text: "Gracias a la academia logré ingresar al COAR. La preparación fue exigente pero muy efectiva.",
+    highlight: "Ingreso a COAR 2026",
+  },
+  {
+    name: "Elissa Doza",
+    text: "El nivel de exigencia me ayudó bastante. Aprendí a resolver problemas más rápido y eso me permitió alcanzar una vacante en el COAR.",
+    highlight: "Ingreso a COAR 2026",
+  },
+  {
+    name: "Jheyson Mejía",
+    text: "La metodología es excelente. Logré ingresar a la universidad con una base sólida.",
+    highlight: "Ingreso universitario",
+  },
+];
+---
+
+<section id="testimonios" class="py-28 bg-white">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-20" data-reveal>
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
+        Testimonios
+      </span>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">
+        Resultados que <span class="text-blue-700">hablan por sí solos</span>
+      </h2>
+
+      <p class="mt-5 text-neutral-500">
+        Nuestros estudiantes son el reflejo de nuestro compromiso.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid md:grid-cols-3 gap-6">
+
+      {testimonials.map((t, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={String(i + 1)}
+          class="p-7 rounded-3xl border border-neutral-200 bg-white hover:shadow-xl transition-all duration-300"
+        >
+          <div class="mb-4 text-yellow-400 text-lg">★★★★★</div>
+
+          <p class="text-sm text-neutral-600 leading-relaxed mb-6">
+            “{t.text}”
+          </p>
+
+          <div>
+            <p class="font-bold text-neutral-900">{t.name}</p>
+            <p class="text-xs text-blue-700 font-semibold">{t.highlight}</p>
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import "../scripts/reveal.ts";
+</script>

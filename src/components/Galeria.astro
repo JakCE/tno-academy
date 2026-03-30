@@ -1,20 +1,35 @@
-<section id="galeria" class="py-28 bg-neutral-50">
+---
+// src/components/Galeria.astro
+---
 
-  <div class="max-w-7xl mx-auto px-6">
+<section id="galeria" class="relative py-28 bg-neutral-50 overflow-hidden">
 
-    <div class="text-center max-w-3xl mx-auto mb-16">
+  <!-- Background decor -->
+  <div class="absolute -top-32 -right-32 w-[500px] h-[500px] bg-blue-100 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
+  <div class="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] opacity-50 pointer-events-none"></div>
 
-      <h2 class="text-3xl md:text-4xl font-bold text-neutral-900">
-        Nuestra <span class="text-primary-600">Galería</span>
+  <div class="relative max-w-7xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-20" data-reveal>
+
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
+        Galería académica
+      </span>
+
+      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 leading-tight">
+        Momentos que reflejan
+        <span class="text-blue-700"> nuestro compromiso</span>
       </h2>
 
-      <p class="mt-6 text-neutral-600 text-lg">
-        Conoce algunos momentos de nuestras clases, talleres y logros académicos.
+      <p class="mt-5 text-neutral-500 text-base leading-relaxed">
+        Conoce el día a día de nuestros estudiantes, sus avances y logros dentro de la academia.
       </p>
 
     </div>
 
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Grid -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-6">
 
       {[
         "/galeria1.jpeg",
@@ -23,18 +38,58 @@
         "/galeria4.jpeg",
         "/galeria5.jpeg",
         "/galeria6.jpeg",
-      ].map((img) => (
-        <div class="overflow-hidden rounded-2xl shadow-md group">
+      ].map((img, i) => (
+        <div
+          data-reveal
+          data-reveal-delay={String((i % 3) + 1)}
+          class="group relative overflow-hidden rounded-3xl border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-300"
+        >
+
+          <!-- Imagen -->
           <img
             src={img}
-            class="w-full h-64 object-cover transition duration-500 group-hover:scale-105"
-            alt="Actividad académica"
+            alt="Actividad académica en Academia The Number One"
+            class="w-full h-64 object-cover transition duration-500 group-hover:scale-110"
           />
+
+          <!-- Overlay hover -->
+          <div class="absolute inset-0 bg-gradient-to-t from-blue-900/70 via-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+
+          <!-- Texto hover -->
+          <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition duration-300">
+            <p class="text-sm font-semibold">Academia The Number One</p>
+            <p class="text-xs text-blue-200">Formando estudiantes con excelencia</p>
+          </div>
+
         </div>
       ))}
 
     </div>
 
+    <!-- CTA suave -->
+    <div
+      data-reveal
+      class="mt-20 text-center"
+    >
+      <p class="text-neutral-500 text-sm mb-4">
+        ¿Quieres ser parte de estos logros?
+      </p>
+
+      <a
+        href="/#contacto"
+        class="inline-flex items-center gap-2 bg-blue-700 text-white font-bold px-6 py-3 rounded-xl hover:bg-blue-800 transition-all duration-200 shadow-md hover:-translate-y-0.5"
+      >
+        Solicitar información
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+        </svg>
+      </a>
+    </div>
+
   </div>
 
 </section>
+
+<script>
+  import "../scripts/reveal.ts";
+</script>

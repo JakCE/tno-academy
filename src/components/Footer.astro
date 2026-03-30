@@ -1,4 +1,5 @@
 ---
+// src/components/Footer.astro
 import { Icon } from "astro-icon/components";
 
 const year = new Date().getFullYear();
@@ -11,19 +12,23 @@ const quickLinks = [
 ];
 ---
 
-<footer class="bg-neutral-100 text-neutral-700 pt-24 pb-12">
+<footer class="relative bg-white pt-24 pb-10 overflow-hidden border-t border-neutral-200">
 
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-16">
+  <!-- Background decor suave -->
+  <div class="absolute -top-32 -right-32 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] opacity-60 pointer-events-none"></div>
+  <div class="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-100 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-14 md:gap-16">
 
     <!-- 🔹 Columna 1 -->
-    <div>
+    <div data-reveal>
       <img
         src="/Logo Academia SF.png"
         alt="Academia The Number One"
-        class="h-16 w-auto mb-6"
+        class="h-14 w-auto mb-6"
       />
 
-      <p class="text-sm leading-relaxed text-neutral-600 max-w-sm">
+      <p class="text-sm leading-relaxed text-neutral-500 max-w-sm">
         Academia referente en la provincia de Atalaya, región Ucayali.
         Especializados en Matemática, preparación COAR y preuniversitaria,
         formando estudiantes con visión y excelencia académica.
@@ -31,18 +36,19 @@ const quickLinks = [
     </div>
 
     <!-- 🔹 Columna 2 -->
-    <div>
-      <h3 class="text-neutral-900 font-semibold mb-6 text-lg">
-        Enlaces rápidos
+    <div data-reveal data-reveal-delay="1">
+      <h3 class="text-neutral-900 font-extrabold mb-6 text-lg">
+        Navegación
       </h3>
 
-      <ul class="space-y-4 text-sm">
+      <ul class="space-y-3 text-sm">
         {quickLinks.map((link) => (
           <li>
             <a
               href={link.href}
-              class="text-neutral-600 hover:text-primary-600 transition duration-200"
+              class="group inline-flex items-center gap-2 text-neutral-500 hover:text-blue-700 transition-all duration-200"
             >
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition"></span>
               {link.label}
             </a>
           </li>
@@ -51,44 +57,45 @@ const quickLinks = [
     </div>
 
     <!-- 🔹 Columna 3 -->
-    <div>
-      <h3 class="text-neutral-900 font-semibold mb-6 text-lg">
+    <div data-reveal data-reveal-delay="2">
+      <h3 class="text-neutral-900 font-extrabold mb-6 text-lg">
         Contacto
       </h3>
 
-      <div class="space-y-4 text-sm text-neutral-600">
+      <div class="space-y-4 text-sm">
 
-        <div class="flex items-start gap-3">
-          <Icon name="heroicons:map-pin" class="w-5 h-5 text-primary-500 mt-1" />
+        <div class="flex items-start gap-3 text-neutral-500">
+          <Icon name="heroicons:map-pin" class="w-5 h-5 text-blue-600 mt-0.5" />
           <span>Provincia de Atalaya, Ucayali – Perú</span>
         </div>
 
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:phone" class="w-5 h-5 text-primary-500" />
+          <Icon name="heroicons:phone" class="w-5 h-5 text-blue-600" />
           <a
             href="tel:+51981696561"
-            class="hover:text-primary-600 transition"
+            class="text-neutral-500 hover:text-blue-700 transition"
           >
             +51 981 696 561
           </a>
         </div>
 
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:envelope" class="w-5 h-5 text-primary-500" />
+          <Icon name="heroicons:envelope" class="w-5 h-5 text-blue-600" />
           <a
             href="mailto:sethenumberone@gmail.com"
-            class="hover:text-primary-600 transition"
+            class="text-neutral-500 hover:text-blue-700 transition"
           >
             sethenumberone@gmail.com
           </a>
         </div>
 
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:chat-bubble-left-right" class="w-5 h-5 text-primary-500" />
+          <Icon name="heroicons:chat-bubble-left-right" class="w-5 h-5 text-green-600" />
           <a
             href="https://wa.me/51981696561?text=Hola%2C%20quiero%20información%20sobre%20la%20academia"
             target="_blank"
-            class="hover:text-primary-600 transition"
+            rel="noopener noreferrer"
+            class="text-neutral-500 hover:text-green-700 transition"
           >
             WhatsApp
           </a>
@@ -99,9 +106,25 @@ const quickLinks = [
 
   </div>
 
-  <!-- 🔹 Línea inferior -->
-  <div class="border-t border-neutral-200 mt-16 pt-6 text-center text-sm text-neutral-500">
-    © {year} Academia The Number One. Todos los derechos reservados.
+  <!-- Divider -->
+  <div class="relative max-w-7xl mx-auto px-6 mt-16 pt-6 border-t border-neutral-200">
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+
+      <p>
+        © {year} Academia The Number One. Todos los derechos reservados.
+      </p>
+
+      <p class="text-neutral-400">
+        Formando líderes del futuro 📘
+      </p>
+
+    </div>
+
   </div>
 
 </footer>
+
+<script>
+  import "../scripts/reveal.ts";
+</script>
