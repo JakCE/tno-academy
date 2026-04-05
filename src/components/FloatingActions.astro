@@ -1,26 +1,64 @@
 ---
 // src/components/FloatingActions.astro
 import { Icon } from "astro-icon/components";
+
+const WA = "51929469555";
+
+const faqs = [
+  {
+    q: "¿Qué programas ofrece la academia?",
+    a: "Ofrecemos 3 programas:\n\n📘 Ciclo Vacacional — Repaso intensivo, preparación COAR y Beca 18.\n📗 Ciclo Semestral — Refuerzo continuo y preparación preuniversitaria.\n💻 Computación — Herramientas digitales para el trabajo.",
+  },
+  {
+    q: "¿Qué cursos con certificado tienen?",
+    a: "Tenemos 6 cursos con certificado de participación:\n\n💻 Computación Básica e Internet\n📄 Ofimática (Word, Excel, PowerPoint)\n📊 Excel Intermedio para el Trabajo\n🎨 Diseño Digital con Canva\n☁️ Google Workspace\n🏫 Herramientas para Docentes",
+  },
+  {
+    q: "¿Cuándo inician las clases?",
+    a: "Las clases de la academia inician el lunes 6 de abril. Los cursos y talleres tienen fechas de inicio flexibles según el grupo. ¡Escríbenos para asegurar tu cupo!",
+  },
+  {
+    q: "¿Cómo me inscribo?",
+    a: "Puedes inscribirte de dos formas:\n\n📱 Escríbenos por WhatsApp al 929 469 555\n📍 Visítanos en Jr. Rímac Mz 23 Lt 1f, Atalaya\n\nLa inscripción es rápida y sencilla.",
+  },
+  {
+    q: "¿Cuánto cuesta?",
+    a: "Los precios varían según el programa o curso elegido. Escríbenos por WhatsApp y te damos información personalizada sobre costos y facilidades de pago 😊",
+  },
+  {
+    q: "¿Dónde están ubicados?",
+    a: "📍 Jr. Rímac Mz 23 Lt 1f, Atalaya, Ucayali.\n\nReferencia: 1er piso de Librería San Antonio, frente a la I.E. Hildebrando Fuentes.",
+  },
+  {
+    q: "¿Cuáles son sus teléfonos?",
+    a: "Puedes contactarnos en:\n\n📞 929 469 555\n📞 949 544 537\n📞 907 383 283\n\nTambién por WhatsApp al 929 469 555.",
+  },
+  {
+    q: "¿Los cursos tienen certificado?",
+    a: "Sí ✅ Todos nuestros cursos y talleres incluyen certificado de participación emitido por Servicios Educativos The Number One, válido para presentar en tu institución o trabajo.",
+  },
+];
 ---
 
-<div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+<!-- ── Botones flotantes ───────────────────────────── -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
 
-  <!-- 🔹 Botón Chat -->
+  <!-- Chat -->
   <button
     id="chat-btn"
-    class="group relative w-14 h-14 rounded-2xl bg-blue-700 text-white shadow-lg hover:bg-blue-800 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
+    aria-label="Abrir asistente de consultas"
+    class="relative w-14 h-14 rounded-2xl bg-blue-700 text-white shadow-xl hover:bg-blue-800 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center"
   >
-    <Icon name="heroicons:chat-bubble-left-right" class="w-6 h-6" />
-
-    <!-- Tooltip -->
-    <span class="absolute right-16 whitespace-nowrap bg-neutral-900 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition">
-      Chat (próximamente)
-    </span>
+    <Icon name="heroicons:chat-bubble-left-right" class="w-6 h-6" id="chat-icon-open" />
+    <Icon name="heroicons:x-mark" class="w-6 h-6 hidden" id="chat-icon-close" />
+    <!-- Pulso de notificación -->
+    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" id="chat-pulse"></span>
   </button>
 
-  <!-- 🔹 Botón Scroll Top -->
+  <!-- Scroll top -->
   <button
     id="scrollTopBtn"
+    aria-label="Volver arriba"
     class="w-12 h-12 rounded-xl bg-white border border-neutral-200 text-blue-700 shadow-md hover:bg-blue-50 transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center opacity-0 pointer-events-none"
   >
     <Icon name="heroicons:arrow-up" class="w-5 h-5" />
@@ -28,51 +66,287 @@ import { Icon } from "astro-icon/components";
 
 </div>
 
-<!-- 🔹 Modal Chat (UI only) -->
+<!-- ── Widget de chat ───────────────────────────────── -->
 <div
-  id="chat-modal"
-  class="fixed bottom-24 right-6 z-50 w-[320px] max-w-[90vw] bg-white border border-neutral-200 rounded-2xl shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300"
+  id="chat-widget"
+  class="fixed bottom-24 right-6 z-50 w-[340px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-neutral-200 overflow-hidden opacity-0 translate-y-4 pointer-events-none transition-all duration-300 flex flex-col"
+  style="max-height: min(560px, calc(100vh - 120px));"
+  aria-hidden="true"
 >
 
   <!-- Header -->
-  <div class="flex items-center justify-between px-4 py-3 border-b border-neutral-100">
-    <div class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700">
-        💬
-      </div>
+  <div class="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-700 to-blue-600 text-white shrink-0">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-xl bg-white/20 flex items-center justify-center text-lg shrink-0">🎓</div>
       <div>
-        <p class="text-sm font-bold text-neutral-900">Asistente</p>
-        <p class="text-xs text-neutral-400">En construcción</p>
+        <p class="text-sm font-bold leading-none mb-0.5">Asistente TNO</p>
+        <p class="text-xs text-blue-200 flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
+          En línea
+        </p>
       </div>
     </div>
-
-    <button id="close-chat" class="text-neutral-400 hover:text-neutral-700">
-      ✕
+    <button id="close-chat" aria-label="Cerrar chat" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+      <Icon name="heroicons:x-mark" class="w-4 h-4" />
     </button>
   </div>
 
-  <!-- Body -->
-  <div class="p-4 text-sm text-neutral-500">
-    Muy pronto podrás chatear con nosotros directamente desde aquí 🚀
-  </div>
-
-  <!-- Footer -->
-  <div class="px-4 pb-4">
-    <button class="w-full bg-blue-700 text-white py-2.5 rounded-xl text-sm font-semibold opacity-60 cursor-not-allowed">
-      En construcción
-    </button>
-  </div>
+  <!-- Cuerpo del chat (scrollable) -->
+  <div id="chat-body" class="flex-1 overflow-y-auto p-4 space-y-4 bg-neutral-50" style="scroll-behavior: smooth;"></div>
 
 </div>
 
-<script>
-  const scrollBtn = document.getElementById("scrollTopBtn")!;
-  const chatBtn = document.getElementById("chat-btn")!;
-  const chatModal = document.getElementById("chat-modal")!;
-  const closeChat = document.getElementById("close-chat")!;
+<script define:vars={{ faqs, WA }}>
 
-  // 🔹 Mostrar botón scroll
-  function toggleScrollBtn() {
+  // ── Referencias DOM ──────────────────────────────
+  const chatBtn     = document.getElementById("chat-btn");
+  const chatWidget  = document.getElementById("chat-widget");
+  const closeChat   = document.getElementById("close-chat");
+  const chatBody    = document.getElementById("chat-body");
+  const iconOpen    = document.getElementById("chat-icon-open");
+  const iconClose   = document.getElementById("chat-icon-close");
+  const chatPulse   = document.getElementById("chat-pulse");
+  const scrollBtn   = document.getElementById("scrollTopBtn");
+
+  let isOpen = false;
+  let initialized = false;
+
+  // ── Helpers de UI ────────────────────────────────
+
+  /** Crea una burbuja del bot */
+  function botBubble(html) {
+    const wrap = document.createElement("div");
+    wrap.className = "flex items-start gap-2";
+    wrap.innerHTML = `
+      <div class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-sm shrink-0 mt-0.5">🎓</div>
+      <div class="bg-white border border-neutral-200 text-neutral-700 text-sm leading-relaxed rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm max-w-[85%]">${html}</div>
+    `;
+    return wrap;
+  }
+
+  /** Crea una burbuja del usuario */
+  function userBubble(text) {
+    const wrap = document.createElement("div");
+    wrap.className = "flex justify-end";
+    wrap.innerHTML = `
+      <div class="bg-blue-600 text-white text-sm leading-relaxed rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">${text}</div>
+    `;
+    return wrap;
+  }
+
+  /** Convierte saltos de línea en <br> */
+  function nl2br(str) {
+    return str.replace(/\n/g, "<br>");
+  }
+
+  /** Hace scroll al fondo */
+  function scrollBottom() {
+    setTimeout(() => { chatBody.scrollTop = chatBody.scrollHeight; }, 50);
+  }
+
+  // ── Flujo del chatbot ────────────────────────────
+
+  function showHome() {
+    chatBody.innerHTML = "";
+
+    // Saludo
+    chatBody.appendChild(botBubble("¡Hola! 👋 Soy el asistente de <strong>Servicios Educativos The Number One</strong>.<br><br>¿En qué puedo ayudarte hoy?"));
+
+    // Lista de preguntas
+    const listWrap = document.createElement("div");
+    listWrap.className = "space-y-2";
+
+    faqs.forEach((faq, i) => {
+      const btn = document.createElement("button");
+      btn.className = "w-full text-left text-sm text-neutral-700 bg-white border border-neutral-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between gap-2";
+      btn.innerHTML = `
+        <span>${faq.q}</span>
+        <svg class="w-4 h-4 shrink-0 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+      `;
+      btn.addEventListener("click", () => showAnswer(i));
+      listWrap.appendChild(btn);
+    });
+
+    // Opción "Otra consulta"
+    const otherBtn = document.createElement("button");
+    otherBtn.className = "w-full text-left text-sm text-violet-700 bg-violet-50 border border-violet-200 hover:bg-violet-100 px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between gap-2 font-semibold";
+    otherBtn.innerHTML = `
+      <span>✏️ Otra consulta...</span>
+      <svg class="w-4 h-4 shrink-0 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+    `;
+    otherBtn.addEventListener("click", showOther);
+    listWrap.appendChild(otherBtn);
+
+    chatBody.appendChild(listWrap);
+    scrollBottom();
+  }
+
+  function showAnswer(index) {
+    const faq = faqs[index];
+    chatBody.innerHTML = "";
+
+    // Pregunta del usuario
+    chatBody.appendChild(userBubble(faq.q));
+
+    // Typing indicator (animación breve)
+    const typing = document.createElement("div");
+    typing.className = "flex items-start gap-2";
+    typing.innerHTML = `
+      <div class="w-7 h-7 rounded-lg bg-blue-100 flex items-center justify-center text-sm shrink-0 mt-0.5">🎓</div>
+      <div class="bg-white border border-neutral-200 px-4 py-3 rounded-2xl rounded-tl-sm shadow-sm">
+        <div class="flex gap-1 items-center h-4">
+          <span class="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style="animation-delay:0s"></span>
+          <span class="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style="animation-delay:.15s"></span>
+          <span class="w-2 h-2 bg-neutral-400 rounded-full animate-bounce" style="animation-delay:.3s"></span>
+        </div>
+      </div>
+    `;
+    chatBody.appendChild(typing);
+    scrollBottom();
+
+    // Respuesta después del delay
+    setTimeout(() => {
+      chatBody.removeChild(typing);
+
+      // Respuesta del bot
+      chatBody.appendChild(botBubble(nl2br(faq.a)));
+
+      // Acciones
+      const actions = document.createElement("div");
+      actions.className = "flex flex-col gap-2";
+      actions.innerHTML = `
+        <button id="btn-back" class="w-full text-sm text-neutral-600 bg-white border border-neutral-200 hover:bg-neutral-50 px-4 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+          Hacer otra pregunta
+        </button>
+        <a
+          href="https://wa.me/${WA}?text=${encodeURIComponent("Hola, tengo una consulta sobre: " + faq.q)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full text-sm text-white bg-green-600 hover:bg-green-700 px-4 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 font-semibold"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultar por WhatsApp
+        </a>
+      `;
+      chatBody.appendChild(actions);
+
+      chatBody.querySelector("#btn-back").addEventListener("click", showHome);
+      scrollBottom();
+    }, 700);
+  }
+
+  function showOther() {
+    chatBody.innerHTML = "";
+
+    chatBody.appendChild(userBubble("Otra consulta..."));
+    chatBody.appendChild(botBubble("Claro, escribe tu consulta y te enviaremos un mensaje listo para WhatsApp 👇"));
+
+    const form = document.createElement("div");
+    form.className = "space-y-3";
+    form.innerHTML = `
+      <textarea
+        id="other-input"
+        rows="3"
+        placeholder="Ej: ¿Tienen clases los sábados?"
+        class="w-full text-sm border border-neutral-200 rounded-xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+      ></textarea>
+      <div class="flex gap-2">
+        <button id="btn-back-other" class="flex-1 text-sm text-neutral-600 bg-white border border-neutral-200 hover:bg-neutral-50 px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-1">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+          Volver
+        </button>
+        <button id="btn-send-other" class="flex-1 text-sm text-white bg-blue-700 hover:bg-blue-800 px-3 py-2.5 rounded-xl transition-all duration-200 font-semibold flex items-center justify-center gap-1">
+          Continuar
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </button>
+      </div>
+    `;
+    chatBody.appendChild(form);
+
+    const input = form.querySelector("#other-input");
+    input.focus();
+
+    form.querySelector("#btn-back-other").addEventListener("click", showHome);
+    form.querySelector("#btn-send-other").addEventListener("click", () => {
+      const question = input.value.trim();
+      if (!question) {
+        input.classList.add("ring-2", "ring-red-400", "border-red-300");
+        input.placeholder = "Por favor escribe tu consulta...";
+        return;
+      }
+      showWspRedirect(question);
+    });
+
+    // También enviar con Enter (Ctrl+Enter)
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+        form.querySelector("#btn-send-other").click();
+      }
+    });
+
+    scrollBottom();
+  }
+
+  function showWspRedirect(question) {
+    chatBody.innerHTML = "";
+
+    chatBody.appendChild(userBubble(question));
+    chatBody.appendChild(botBubble("¡Listo! Tu consulta está lista. Haz clic en el botón para enviárnosla por WhatsApp y te respondemos a la brevedad 👇"));
+
+    const actions = document.createElement("div");
+    actions.className = "flex flex-col gap-2";
+    const wspMsg = `Hola, tengo una consulta: ${question}`;
+    actions.innerHTML = `
+      <a
+        href="https://wa.me/${WA}?text=${encodeURIComponent(wspMsg)}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full text-sm text-white bg-green-600 hover:bg-green-700 px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 font-bold"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar por WhatsApp
+      </a>
+      <button id="btn-new-question" class="w-full text-sm text-neutral-600 bg-white border border-neutral-200 hover:bg-neutral-50 px-4 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+        Hacer otra pregunta
+      </button>
+    `;
+    chatBody.appendChild(actions);
+    actions.querySelector("#btn-new-question").addEventListener("click", showHome);
+    scrollBottom();
+  }
+
+  // ── Abrir / cerrar widget ────────────────────────
+
+  function openChat() {
+    isOpen = true;
+    chatWidget.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
+    chatWidget.classList.add("opacity-100", "translate-y-0");
+    chatWidget.setAttribute("aria-hidden", "false");
+    iconOpen.classList.add("hidden");
+    iconClose.classList.remove("hidden");
+    chatPulse.classList.add("hidden");
+    if (!initialized) { initialized = true; showHome(); }
+    scrollBottom();
+  }
+
+  function closeWidget() {
+    isOpen = false;
+    chatWidget.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
+    chatWidget.classList.remove("opacity-100", "translate-y-0");
+    chatWidget.setAttribute("aria-hidden", "true");
+    iconOpen.classList.remove("hidden");
+    iconClose.classList.add("hidden");
+  }
+
+  chatBtn.addEventListener("click", () => isOpen ? closeWidget() : openChat());
+  closeChat.addEventListener("click", closeWidget);
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen) closeWidget(); });
+
+  // ── Scroll top ───────────────────────────────────
+
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 300) {
       scrollBtn.classList.remove("opacity-0", "pointer-events-none");
       scrollBtn.classList.add("opacity-100");
@@ -80,31 +354,8 @@ import { Icon } from "astro-icon/components";
       scrollBtn.classList.add("opacity-0", "pointer-events-none");
       scrollBtn.classList.remove("opacity-100");
     }
-  }
+  }, { passive: true });
 
-  window.addEventListener("scroll", toggleScrollBtn);
+  scrollBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-  // 🔹 Scroll top
-  scrollBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  // 🔹 Chat modal
-  chatBtn.addEventListener("click", () => {
-    chatModal.classList.remove("opacity-0", "translate-y-4", "pointer-events-none");
-    chatModal.classList.add("opacity-100", "translate-y-0");
-  });
-
-  closeChat.addEventListener("click", () => {
-    chatModal.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
-    chatModal.classList.remove("opacity-100", "translate-y-0");
-  });
-
-  // Cerrar con ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      chatModal.classList.add("opacity-0", "translate-y-4", "pointer-events-none");
-      chatModal.classList.remove("opacity-100", "translate-y-0");
-    }
-  });
 </script>

@@ -10,11 +10,23 @@ import FloatingActions from "../components/FloatingActions.astro";
 interface Props {
   title?: string;
   description?: string;
+  navItems?: { label: string; href: string }[];
+  ctaPrimary?: { label: string; href: string };
+  footerBrand?: string;
+  footerBrandDescription?: string;
+  footerQuickLinks?: { label: string; href: string }[];
+  showModal?: boolean;
 }
 
 const {
   title       = "Academia The Number One",
   description = "Academia educativa enfocada en la excelencia académica y formación integral.",
+  navItems,
+  ctaPrimary,
+  footerBrand,
+  footerBrandDescription,
+  footerQuickLinks,
+  showModal = false,
 } = Astro.props;
 ---
 
@@ -97,11 +109,11 @@ const {
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Modal de anuncio (una vez por sesión) -->
-    <AnnouncementModal />
+    <!-- Modal de anuncio (solo en academia) -->
+    {showModal && <AnnouncementModal />}
 
     <!-- Navbar -->
-    <Navbar />
+    <Navbar navItems={navItems} ctaPrimary={ctaPrimary} />
 
     <!-- Contenido principal -->
     <main class="min-h-screen">
@@ -109,7 +121,7 @@ const {
     </main>
 
     <!-- Footer -->
-    <Footer />
+    <Footer brand={footerBrand} brandDescription={footerBrandDescription} quickLinks={footerQuickLinks} />
     <FloatingActions />
     <Analytics />
   </body>

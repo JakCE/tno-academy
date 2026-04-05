@@ -1,0 +1,54 @@
+---
+// src/pages/academia.astro
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Stats from "../components/Stats.astro";
+import Programas from "../components/Programas.astro";
+import CTA from "../components/CTA.astro";
+import Metodologia from "../components/Metodologia.astro";
+import Galeria from "../components/Galeria.astro";
+import AudioPlayer from "../components/AudioPlayer.astro";
+import FAQ from "../components/FAQ.astro";
+import Testimonios from "../components/Testimonios.astro";
+import "../styles/global.css";
+
+const navItems = [
+  { label: "Inicio",      href: "#inicio"      },
+  { label: "Programas",   href: "#programas"   },
+  { label: "Metodología", href: "#metodologia" },
+  { label: "Galería",     href: "#galeria"     },
+  { label: "Contacto",    href: "#contacto"    },
+];
+
+const footerQuickLinks = [
+  { label: "Inicio",      href: "#inicio"      },
+  { label: "Programas",   href: "#programas"   },
+  { label: "Metodología", href: "#metodologia" },
+  { label: "Contacto",    href: "#contacto"    },
+];
+---
+
+<Layout
+  title="Academia The Number One | Educación de Calidad en Atalaya, Ucayali"
+  description="Nivelación Primaria y Secundaria, preparación para COAR, Beca 18 y Preuniversitario en Atalaya, Ucayali. Más de 10 años formando líderes."
+  navItems={navItems}
+  ctaPrimary={{ label: "Matrícula", href: "#contacto" }}
+  footerQuickLinks={footerQuickLinks}
+  showModal={true}
+>
+  <Hero />
+  <!-- Sección reproductor de canción -->
+  <section class="bg-blue-50 border-y border-blue-100 py-8 px-4">
+    <p class="text-center text-sm text-blue-400 font-semibold tracking-wide mb-4">
+      🎵 Escucha nuestra canción oficial
+    </p>
+    <AudioPlayer audioSrc="/audio/cancion-tno.mpeg" />
+  </section>
+  <Programas />
+  <Metodologia />
+  <Stats />
+  <Testimonios />
+  <Galeria />
+  <FAQ />
+  <CTA />
+</Layout>

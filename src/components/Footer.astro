@@ -2,14 +2,24 @@
 // src/components/Footer.astro
 import { Icon } from "astro-icon/components";
 
-const year = new Date().getFullYear();
+interface Props {
+  brand?: string;
+  brandDescription?: string;
+  quickLinks?: { label: string; href: string }[];
+}
 
-const quickLinks = [
-  { label: "Inicio", href: "/" },
-  { label: "Programas", href: "/#programas" },
-  { label: "Metodología", href: "/#metodologia" },
-  { label: "Contacto", href: "/#contacto" },
-];
+const {
+  brand = "Academia The Number One",
+  brandDescription = "Academia referente en la provincia de Atalaya, región Ucayali. Especializados en Matemática, preparación COAR y preuniversitaria, formando estudiantes con visión y excelencia académica.",
+  quickLinks = [
+    { label: "Inicio",      href: "#inicio"      },
+    { label: "Programas",   href: "#programas"   },
+    { label: "Metodología", href: "#metodologia" },
+    { label: "Contacto",    href: "#contacto"    },
+  ],
+} = Astro.props;
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="relative bg-white pt-24 pb-10 overflow-hidden border-t border-neutral-200">
@@ -29,9 +39,7 @@ const quickLinks = [
       />
 
       <p class="text-sm leading-relaxed text-neutral-500 max-w-sm">
-        Academia referente en la provincia de Atalaya, región Ucayali.
-        Especializados en Matemática, preparación COAR y preuniversitaria,
-        formando estudiantes con visión y excelencia académica.
+        {brandDescription}
       </p>
     </div>
 
@@ -112,7 +120,7 @@ const quickLinks = [
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
 
       <p>
-        © {year} Academia The Number One. Todos los derechos reservados.
+        © {year} {brand}. Todos los derechos reservados.
       </p>
 
       <p class="text-neutral-400">

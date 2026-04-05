@@ -1,0 +1,349 @@
+---
+// src/pages/cursos.astro — Cursos & Talleres con Certificado
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+
+const navItems = [
+  { label: "Inicio",   href: "/"         },
+  { label: "Academia", href: "/academia"  },
+  { label: "Cursos",   href: "#cursos"   },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const footerQuickLinks = [
+  { label: "Inicio",   href: "/"         },
+  { label: "Academia", href: "/academia"  },
+  { label: "Cursos",   href: "#cursos"   },
+  { label: "Contacto", href: "#contacto" },
+];
+
+const WA = "51929469555";
+
+const courses = [
+  {
+    id: "computacion-basica",
+    emoji: "💻",
+    color: "blue",
+    name: "Computación Básica e Internet",
+    tag: "Para principiantes",
+    duration: "4 semanas",
+    audience: "Personas sin experiencia con computadoras",
+    description:
+      "Aprende a usar la computadora desde cero. Ideal si quieres empezar en el mundo digital o necesitas el básico para tu trabajo.",
+    modules: [
+      "Manejo del computador: mouse, teclado y Windows",
+      "Organización de archivos y carpetas",
+      "Navegación en Internet y búsquedas",
+      "Correo electrónico con Gmail",
+      "WhatsApp Web y videollamadas",
+      "Seguridad básica en internet",
+    ],
+    wsp: "Hola, me interesa el curso de *Computación Básica e Internet*. ¿Pueden darme más información sobre horarios y costo?",
+  },
+  {
+    id: "ofimatica",
+    emoji: "📄",
+    color: "indigo",
+    name: "Ofimática Básica",
+    tag: "Más solicitado",
+    duration: "6 semanas",
+    audience: "Trabajadores y docentes que necesitan certificado",
+    description:
+      "Domina Word, Excel y PowerPoint para el trabajo. Al finalizar recibes tu certificado de participación, válido para presentar en tu institución.",
+    modules: [
+      "Word: documentos, tablas, formato e impresión",
+      "Excel: hojas de cálculo y fórmulas básicas",
+      "Excel: organización y presentación de datos",
+      "PowerPoint: presentaciones profesionales",
+      "Casos prácticos aplicados al trabajo",
+      "Certificado de participación al finalizar",
+    ],
+    wsp: "Hola, me interesa el curso de *Ofimática Básica* (Word, Excel, PowerPoint). ¿Pueden darme más información sobre horarios y costo?",
+  },
+  {
+    id: "excel-intermedio",
+    emoji: "📊",
+    color: "emerald",
+    name: "Excel Intermedio para el Trabajo",
+    tag: "Para administrativos",
+    duration: "4 semanas",
+    audience: "Trabajadores y docentes con conocimiento básico de Excel",
+    description:
+      "Lleva tu Excel al siguiente nivel. Aprende funciones avanzadas para crear reportes, análisis y automatizar tareas repetitivas.",
+    modules: [
+      "Funciones: BUSCARV, SI, SUMAR.SI, CONTAR.SI",
+      "Tablas dinámicas y segmentadores",
+      "Gráficos estadísticos y de gestión",
+      "Formato condicional y validación de datos",
+      "Reportes y dashboards básicos",
+      "Plantillas reutilizables para el trabajo",
+    ],
+    wsp: "Hola, me interesa el curso de *Excel Intermedio para el Trabajo*. ¿Pueden darme más información sobre horarios y costo?",
+  },
+  {
+    id: "canva",
+    emoji: "🎨",
+    color: "pink",
+    name: "Diseño Digital con Canva",
+    tag: "Creativo y práctico",
+    duration: "3 semanas",
+    audience: "Docentes, comerciantes y emprendedores",
+    description:
+      "Crea materiales visuales atractivos sin ser diseñador. Flyers, carteles, diplomas y contenido para redes sociales en minutos.",
+    modules: [
+      "Introducción a Canva (versión gratuita)",
+      "Diseño de flyers y carteles publicitarios",
+      "Creación de diplomas y certificados",
+      "Presentaciones modernas y animadas",
+      "Posts y contenido para redes sociales",
+      "Exportación e impresión de materiales",
+    ],
+    wsp: "Hola, me interesa el curso de *Diseño Digital con Canva*. ¿Pueden darme más información sobre horarios y costo?",
+  },
+  {
+    id: "google-workspace",
+    emoji: "☁️",
+    color: "amber",
+    name: "Google Workspace",
+    tag: "Herramientas Google",
+    duration: "3 semanas",
+    audience: "Trabajadores y docentes",
+    description:
+      "Aprende a usar todas las herramientas de Google para trabajar de forma organizada, colaborativa y desde cualquier dispositivo.",
+    modules: [
+      "Gmail profesional: organización y filtros",
+      "Google Drive: almacenamiento y carpetas compartidas",
+      "Google Docs y Sheets colaborativos",
+      "Google Forms: encuestas y evaluaciones",
+      "Google Meet: reuniones y clases virtuales",
+      "Google Calendar: agenda y recordatorios",
+    ],
+    wsp: "Hola, me interesa el curso de *Google Workspace*. ¿Pueden darme más información sobre horarios y costo?",
+  },
+  {
+    id: "herramientas-docentes",
+    emoji: "🏫",
+    color: "violet",
+    name: "Herramientas Digitales para Docentes",
+    tag: "Para profesores",
+    duration: "4 semanas",
+    audience: "Docentes de primaria y secundaria",
+    description:
+      "Capacitación específica para maestros: registro de notas, evaluaciones digitales, aula virtual y comunicación con padres de familia.",
+    modules: [
+      "SIAGIE: registro de asistencia y calificaciones",
+      "Excel para actas y cuadros de méritos",
+      "Google Classroom: aula virtual básica",
+      "Evaluaciones con Google Forms",
+      "Creación de material didáctico digital",
+      "Comunicación con padres vía Meet y WhatsApp",
+    ],
+    wsp: "Hola, me interesa el curso de *Herramientas Digitales para Docentes*. ¿Pueden darme más información sobre horarios y costo?",
+  },
+];
+
+const colorMap: Record<string, { border: string; badge: string; badgeText: string; dot: string; btn: string; btnHover: string; icon: string }> = {
+  blue:    { border: "hover:border-blue-500/50",    badge: "bg-blue-500/10 border-blue-500/20 text-blue-600",    badgeText: "", dot: "bg-blue-500",    btn: "bg-blue-600",    btnHover: "hover:bg-blue-700",    icon: "text-blue-600 bg-blue-50" },
+  indigo:  { border: "hover:border-indigo-500/50",  badge: "bg-indigo-500/10 border-indigo-500/20 text-indigo-600",  badgeText: "", dot: "bg-indigo-500",  btn: "bg-indigo-600",  btnHover: "hover:bg-indigo-700",  icon: "text-indigo-600 bg-indigo-50" },
+  emerald: { border: "hover:border-emerald-500/50", badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-700", badgeText: "", dot: "bg-emerald-500", btn: "bg-emerald-600", btnHover: "hover:bg-emerald-700", icon: "text-emerald-600 bg-emerald-50" },
+  pink:    { border: "hover:border-pink-500/50",    badge: "bg-pink-500/10 border-pink-500/20 text-pink-600",    badgeText: "", dot: "bg-pink-500",    btn: "bg-pink-600",    btnHover: "hover:bg-pink-700",    icon: "text-pink-600 bg-pink-50" },
+  amber:   { border: "hover:border-amber-500/50",   badge: "bg-amber-500/10 border-amber-500/20 text-amber-700",   badgeText: "", dot: "bg-amber-500",   btn: "bg-amber-500",   btnHover: "hover:bg-amber-600",   icon: "text-amber-600 bg-amber-50" },
+  violet:  { border: "hover:border-violet-500/50",  badge: "bg-violet-500/10 border-violet-500/20 text-violet-600",  badgeText: "", dot: "bg-violet-500",  btn: "bg-violet-600",  btnHover: "hover:bg-violet-700",  icon: "text-violet-600 bg-violet-50" },
+};
+---
+
+<Layout
+  title="Cursos & Talleres con Certificado | Servicios Educativos The Number One — Atalaya, Ucayali"
+  description="Cursos de computación, ofimática, Excel, Canva y herramientas digitales con certificado de participación en Atalaya, Ucayali."
+  navItems={navItems}
+  ctaPrimary={{ label: "Ver cursos", href: "#cursos" }}
+  footerBrand="Servicios Educativos The Number One"
+  footerBrandDescription="Formación práctica y certificada en computación y herramientas digitales para trabajadores, docentes y emprendedores en Atalaya, Ucayali."
+  footerQuickLinks={footerQuickLinks}
+  showModal={false}
+>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-violet-950 pt-36 pb-20 px-6 overflow-hidden">
+    <!-- Decoración fondo -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-20 -right-20 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-sm text-slate-400 mb-8">
+        <a href="/" class="hover:text-white transition">Inicio</a>
+        <span>/</span>
+        <span class="text-white font-semibold">Cursos & Talleres</span>
+      </nav>
+
+      <span class="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 border border-violet-500/20 px-4 py-1.5 rounded-full mb-6">
+        ✅ Con certificado de participación
+      </span>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+        Cursos & Talleres<br />
+        <span class="bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">
+          para el trabajo
+        </span>
+      </h1>
+
+      <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+        Aprende computación y herramientas digitales con clases prácticas.
+        Al finalizar recibes tu <strong class="text-white">certificado de participación</strong>.
+      </p>
+
+      <!-- Stats rápidos -->
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        {[
+          { val: "6",       label: "Cursos disponibles" },
+          { val: "Certif.", label: "Al finalizar"        },
+          { val: "Grupos",  label: "Reducidos"           },
+          { val: "Práctico",label: "100% aplicado"       },
+        ].map(s => (
+          <div class="text-center">
+            <p class="text-2xl font-extrabold text-white">{s.val}</p>
+            <p class="text-slate-400">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CURSOS ─────────────────────────────────────── -->
+  <section id="cursos" class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 mb-4">
+          Cursos disponibles
+        </h2>
+        <p class="text-neutral-500 max-w-xl mx-auto">
+          Cada curso incluye clases prácticas y certificado al finalizar. Para más detalles sobre horarios y costo, escríbenos por WhatsApp.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.map((course) => {
+          const c = colorMap[course.color];
+          const wspUrl = `https://wa.me/${WA}?text=${encodeURIComponent(course.wsp)}`;
+          return (
+            <div class={`group relative flex flex-col bg-white border border-neutral-200 ${c.border} rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}>
+
+              <!-- Header tarjeta -->
+              <div class="flex items-start justify-between mb-5">
+                <div class={`w-12 h-12 rounded-xl ${c.icon} flex items-center justify-center text-2xl shrink-0`}>
+                  {course.emoji}
+                </div>
+                <span class={`text-xs font-bold px-3 py-1 rounded-full border ${c.badge}`}>
+                  {course.tag}
+                </span>
+              </div>
+
+              <!-- Info -->
+              <h3 class="text-lg font-extrabold text-neutral-900 mb-2 leading-snug">
+                {course.name}
+              </h3>
+
+              <div class="flex items-center gap-4 text-xs text-neutral-500 mb-3">
+                <span class="flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  {course.duration}
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                  {course.audience.split(" ").slice(0, 2).join(" ")}...
+                </span>
+              </div>
+
+              <p class="text-neutral-500 text-sm leading-relaxed mb-5">
+                {course.description}
+              </p>
+
+              <!-- Módulos -->
+              <div class="flex-1 mb-6">
+                <p class="text-xs font-bold text-neutral-400 uppercase tracking-wide mb-3">Contenido</p>
+                <ul class="space-y-1.5">
+                  {course.modules.map(m => (
+                    <li class="flex items-start gap-2 text-sm text-neutral-600">
+                      <span class={`w-1.5 h-1.5 rounded-full ${c.dot} mt-1.5 shrink-0`}></span>
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- CTA WhatsApp -->
+              <a
+                href={wspUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`flex items-center justify-center gap-2 w-full py-3 rounded-xl ${c.btn} ${c.btnHover} text-white font-bold text-sm transition-all duration-200`}
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Me interesa este curso
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA CONTACTO ─────────────────────────────────────── -->
+  <section id="contacto" class="py-20 px-6 bg-slate-900">
+    <div class="max-w-2xl mx-auto text-center">
+      <span class="inline-block text-xs font-bold text-violet-400 bg-violet-500/10 border border-violet-500/20 px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
+        ¿Tienes dudas?
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        Escríbenos y te orientamos
+      </h2>
+      <p class="text-slate-400 mb-10 text-lg leading-relaxed">
+        Cuéntanos qué curso te interesa y te informamos sobre horarios, grupos y costos. Atención personalizada.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, quiero información sobre los cursos y talleres disponibles. ¿Pueden orientarme?")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a
+          href="/academia"
+          class="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
+        >
+          Ver Academia
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+
+      <!-- Datos de contacto rápidos -->
+      <div class="mt-12 pt-8 border-t border-slate-800 grid sm:grid-cols-3 gap-6 text-sm text-slate-400">
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Teléfonos</p>
+          <p>929 469 555</p>
+          <p>949 544 537</p>
+        </div>
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Ubicación</p>
+          <p>Jr. Rímac Mz 23 Lt 1f</p>
+          <p>Atalaya, Ucayali</p>
+        </div>
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Email</p>
+          <a href="mailto:sethenumberone@gmail.com" class="hover:text-white transition break-all">
+            sethenumberone@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

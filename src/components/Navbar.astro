@@ -2,13 +2,21 @@
 // src/components/Navbar.astro
 import { Icon } from "astro-icon/components";
 
-const navItems = [
-  { label: "Inicio",      href: "/"           },
-  { label: "Programas",   href: "/#programas"  },
-  { label: "Metodología", href: "/#metodologia"},
-  { label: "Galería",     href: "/#galeria"    },
-  { label: "Contacto",    href: "/#contacto"   },
-];
+interface Props {
+  navItems?: { label: string; href: string }[];
+  ctaPrimary?: { label: string; href: string };
+}
+
+const {
+  navItems = [
+    { label: "Inicio",      href: "#inicio"      },
+    { label: "Programas",   href: "#programas"   },
+    { label: "Metodología", href: "#metodologia" },
+    { label: "Galería",     href: "#galeria"     },
+    { label: "Contacto",    href: "#contacto"    },
+  ],
+  ctaPrimary = { label: "Matrícula", href: "#contacto" },
+} = Astro.props;
 ---
 
 <header
@@ -56,11 +64,11 @@ const navItems = [
         WhatsApp
       </a>
       <a
-        href="/#contacto"
+        href={ctaPrimary.href}
         class="inline-flex items-center gap-2 bg-blue-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-blue-800 transition-all duration-200 shadow-md shadow-blue-700/20 hover:shadow-lg hover:shadow-blue-700/30 hover:-translate-y-0.5"
       >
         <Icon name="heroicons:academic-cap" class="w-4 h-4" />
-        Matrícula
+        {ctaPrimary.label}
       </a>
     </div>
 
@@ -134,12 +142,12 @@ const navItems = [
         Escríbenos por WhatsApp
       </a>
       <a
-        href="/#contacto"
+        href={ctaPrimary.href}
         data-mobile-link
         class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-blue-700 text-white font-bold text-sm hover:bg-blue-800 transition-colors"
       >
         <Icon name="heroicons:academic-cap" class="w-4 h-4" />
-        Matricularme ahora
+        {ctaPrimary.label}
       </a>
     </div>
   </div>

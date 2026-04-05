@@ -1,35 +1,229 @@
 ---
-// src/pages/index.astro
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import Stats from "../components/Stats.astro";
-import Programas from "../components/Programas.astro";
-import CTA from "../components/CTA.astro";
-import Metodologia from "../components/Metodologia.astro";
-import Galeria from "../components/Galeria.astro";
-import AudioPlayer from "../components/AudioPlayer.astro";
-import FAQ from "../components/FAQ.astro";
-import Testimonios from "../components/Testimonios.astro";
-import "../styles/global.css"
+// src/pages/index.astro — Hub: Servicios Educativos The Number One
+import "../styles/global.css";
 ---
 
-<Layout
-  title="Academia The Number One | Educación de Calidad en Atalaya, Ucayali"
-  description="Nivelación Primaria y Secundaria, preparación para COAR, Beca 18 y Preuniversitario en Atalaya, Ucayali. Más de 10 años formando líderes."
->
-  <Hero />
-  <!-- Sección reproductor de canción -->
-  <section class="bg-blue-50 border-y border-blue-100 py-8 px-4">
-    <p class="text-center text-sm text-blue-400 font-semibold tracking-wide mb-4">
-      🎵 Escucha nuestra canción oficial
-    </p>
-    <AudioPlayer audioSrc="/audio/cancion-tno.mpeg" />
-  </section>
-  <Programas />
-  <Metodologia />
-  <Stats />
-  <Testimonios />
-  <Galeria />
-  <FAQ />
-  <CTA />
-</Layout>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Servicios Educativos The Number One | Atalaya, Ucayali</title>
+    <meta name="description" content="Servicios Educativos The Number One: Academia de reforzamiento escolar y cursos de computación, ofimática y herramientas digitales con certificado en Atalaya, Ucayali." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://tno-academy.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Servicios Educativos The Number One | Atalaya, Ucayali" />
+    <meta property="og:description" content="Academia y cursos con certificado en Atalaya, Ucayali. Más de 10 años formando personas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tno-academy.vercel.app/" />
+    <meta property="og:image" content="https://tno-academy.vercel.app/Logo Academia SF.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-53V7LT6M');
+    </script>
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Servicios Educativos The Number One",
+        "url": "https://tno-academy.vercel.app",
+        "telephone": ["+51929469555", "+51949544537", "+51907383283"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Jr. Rímac Mz 23 Lt 1f",
+          "addressLocality": "Atalaya",
+          "addressRegion": "Ucayali",
+          "addressCountry": "PE"
+        }
+      })}
+    </script>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="/icono.ico" />
+
+    <style>
+      :root { --font-heading: 'Sora', sans-serif; --font-body: 'Nunito', sans-serif; }
+      body { font-family: var(--font-body); }
+      h1, h2, h3, h4 { font-family: var(--font-heading); }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-slate-950 text-white antialiased">
+    <!-- GTM noscript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53V7LT6M" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    <!-- Fondo decorativo -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+      <div class="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px]"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 rounded-full blur-[160px]"></div>
+    </div>
+
+    <div class="relative min-h-screen flex flex-col">
+
+      <!-- Header -->
+      <header class="flex-none px-6 py-6 flex items-center justify-between max-w-6xl mx-auto w-full">
+        <img
+          src="/Logo Academia SF.png"
+          alt="Servicios Educativos The Number One"
+          class="h-12 w-auto brightness-200"
+        />
+        <a
+          href="https://wa.me/51929469555?text=Hola,%20quiero%20información%20sobre%20los%20servicios%20educativos"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-all duration-200"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </header>
+
+      <!-- Hero texto -->
+      <div class="flex-none text-center px-6 pt-6 pb-10">
+        <p class="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">Atalaya, Ucayali — Perú</p>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
+          Servicios Educativos<br />
+          <span class="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">The Number One</span>
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg max-w-xl mx-auto">
+          Más de 10 años formando personas en Atalaya. Elige el servicio que necesitas.
+        </p>
+      </div>
+
+      <!-- Cards de selección -->
+      <main class="flex-1 px-4 pb-16 max-w-5xl mx-auto w-full">
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- Card: Cursos & Talleres -->
+          <a
+            href="/cursos"
+            class="group relative flex flex-col bg-slate-900 border border-slate-800 hover:border-violet-500/60 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-violet-500/10 overflow-hidden"
+          >
+            <!-- Glow fondo -->
+            <div class="absolute inset-0 bg-gradient-to-br from-violet-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+            <!-- Icono -->
+            <div class="w-14 h-14 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mb-6 group-hover:bg-violet-500/20 transition-colors duration-300">
+              <svg class="w-7 h-7 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+              </svg>
+            </div>
+
+            <!-- Badge -->
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-violet-400 bg-violet-500/10 border border-violet-500/20 px-3 py-1 rounded-full w-fit mb-4">
+              Nuevo servicio
+            </span>
+
+            <h2 class="text-2xl font-extrabold text-white mb-3 group-hover:text-violet-200 transition-colors duration-200">
+              Cursos & Talleres
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Cursos prácticos de computación, ofimática y herramientas digitales. Con certificado de participación al finalizar.
+            </p>
+
+            <!-- Lista de destacados -->
+            <ul class="space-y-2 text-sm text-slate-400 mb-8 flex-1">
+              {[
+                "Computación básica e Internet",
+                "Ofimática: Word, Excel, PowerPoint",
+                "Excel avanzado para el trabajo",
+                "Diseño digital con Canva",
+                "Google Workspace",
+                "Herramientas para docentes",
+              ].map(item => (
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <div class="inline-flex items-center gap-2 bg-violet-600 group-hover:bg-violet-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all duration-200 w-fit">
+              Ver cursos disponibles
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </a>
+
+          <!-- Card: Academia -->
+          <a
+            href="/academia"
+            class="group relative flex flex-col bg-slate-900 border border-slate-800 hover:border-blue-500/60 rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-500/10 overflow-hidden"
+          >
+            <!-- Glow fondo -->
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl pointer-events-none"></div>
+
+            <!-- Icono -->
+            <div class="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors duration-300">
+              <svg class="w-7 h-7 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+              </svg>
+            </div>
+
+            <!-- Badge -->
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-3 py-1 rounded-full w-fit mb-4">
+              +10 años de experiencia
+            </span>
+
+            <h2 class="text-2xl font-extrabold text-white mb-3 group-hover:text-blue-200 transition-colors duration-200">
+              Academia The Number One
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Nivelación escolar, preparación para COAR, Beca 18 y preuniversitario. Referentes en matemática y comunicación en Atalaya.
+            </p>
+
+            <!-- Lista de destacados -->
+            <ul class="space-y-2 text-sm text-slate-400 mb-8 flex-1">
+              {[
+                "Nivelación Primaria y Secundaria",
+                "Preparación COAR y Beca 18",
+                "Preuniversitario",
+                "Matemática especializada",
+                "Comunicación y comprensión lectora",
+                "500+ estudiantes formados",
+              ].map(item => (
+                <li class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0"></span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <!-- CTA -->
+            <div class="inline-flex items-center gap-2 bg-blue-600 group-hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all duration-200 w-fit">
+              Ver academia
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </div>
+          </a>
+
+        </div>
+      </main>
+
+      <!-- Footer mínimo -->
+      <footer class="flex-none text-center px-6 py-6 border-t border-slate-800/60">
+        <p class="text-slate-500 text-sm">
+          © {new Date().getFullYear()} Servicios Educativos The Number One — Atalaya, Ucayali, Perú
+        </p>
+      </footer>
+
+    </div>
+  </body>
+</html>
