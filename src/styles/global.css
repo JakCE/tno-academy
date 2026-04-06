@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode: activa con clase .dark en <html> */
+@variant dark (&:where(.dark, .dark *));
+
 /* 🎨 Sistema de colores mejorado - Tailwind 4 */
 @theme {
   /* Primary - Azul profesional moderno */

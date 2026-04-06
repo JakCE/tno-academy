@@ -1,104 +1,100 @@
 ---
 // src/components/Programas.astro
 import { Icon } from "astro-icon/components";
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
 
-const programs = [
-  {
-    title: "Ciclo Vacacional",
-    description: "Reforzamiento intensivo durante las vacaciones para consolidar conocimientos y preparar el siguiente año.",
-    points: [
-      "Nivelación Primaria y Secundaria",
-      "Grupos especializados COAR",
-      "Preparación preuniversitaria",
+const t = {
+  es: {
+    badge: "Programas académicos",
+    h2: "Nuestros Programas Académicos",
+    desc: "Formación especializada en Matemática y Letras, con preparación para COAR, Beca 18 y universidades del país.",
+    programs: [
+      { title: "Ciclo Vacacional", description: "Reforzamiento intensivo durante las vacaciones para consolidar conocimientos y preparar el siguiente año.", points: ["Nivelación Primaria y Secundaria","Grupos especializados COAR","Preparación preuniversitaria"], icon: "heroicons:sun", color: "amber" },
+      { title: "Ciclo Semestral", description: "Formación académica continua con seguimiento personalizado y avance progresivo.", points: ["Refuerzo escolar integral","Énfasis en Matemática","Preparación progresiva para exámenes"], icon: "heroicons:calendar-days", color: "blue" },
+      { title: "Computación", description: "Habilidades digitales esenciales para el mundo actual: ofimática, lógica y herramientas tecnológicas.", points: ["Fundamentos informáticos","Herramientas digitales","Pensamiento lógico"], icon: "heroicons:computer-desktop", color: "violet" },
     ],
-    icon: "heroicons:sun",
-    color: "amber",
-  },
-  {
-    title: "Ciclo Semestral",
-    description: "Formación académica continua con seguimiento personalizado y avance progresivo.",
-    points: [
-      "Refuerzo escolar integral",
-      "Énfasis en Matemática",
-      "Preparación progresiva para exámenes",
+    cta: "Solicitar información",
+    subjects_badge: "Cursos disponibles",
+    subjects_h3: "Matemáticas y Letras —",
+    subjects_h3b: "cobertura completa",
+    subjects_desc: "Cubrimos todas las áreas clave para el ingreso a COAR, Beca 18 y universidades, con docentes especializados en cada materia.",
+    materias: [
+      { label: "Aritmética", emoji: "🔢" }, { label: "Álgebra", emoji: "📐" },
+      { label: "Geometría", emoji: "📏" }, { label: "Trigonometría", emoji: "📊" },
+      { label: "Razonamiento Mat.", emoji: "🧠" }, { label: "Comunicación", emoji: "📝" },
+      { label: "Comprensión Lectora", emoji: "📖" }, { label: "Inglés", emoji: "🌐" },
     ],
-    icon: "heroicons:calendar-days",
-    color: "blue",
+    spec_badge: "Especialización",
+    spec_h3: "Enfoque intensivo en",
+    spec_h3b: "Matemática",
+    spec_desc: "Fortalecemos el razonamiento lógico y la capacidad analítica de cada estudiante, con el mejor nivel de la región.",
   },
-  {
-    title: "Computación",
-    description: "Habilidades digitales esenciales para el mundo actual: ofimática, lógica y herramientas tecnológicas.",
-    points: [
-      "Fundamentos informáticos",
-      "Herramientas digitales",
-      "Pensamiento lógico",
+  en: {
+    badge: "Academic programs",
+    h2: "Our Academic Programs",
+    desc: "Specialized training in Mathematics and Language Arts, with preparation for COAR, Scholarship 18, and universities nationwide.",
+    programs: [
+      { title: "Vacation Cycle", description: "Intensive review during school breaks to consolidate knowledge and prepare for the next year.", points: ["Primary & Secondary leveling","COAR specialized groups","Pre-university preparation"], icon: "heroicons:sun", color: "amber" },
+      { title: "Semester Cycle", description: "Continuous academic training with personalized follow-up and progressive advancement.", points: ["Comprehensive school reinforcement","Emphasis on Mathematics","Progressive exam preparation"], icon: "heroicons:calendar-days", color: "blue" },
+      { title: "Computing", description: "Essential digital skills for today's world: office software, logic, and technological tools.", points: ["Computer fundamentals","Digital tools","Logical thinking"], icon: "heroicons:computer-desktop", color: "violet" },
     ],
-    icon: "heroicons:computer-desktop",
-    color: "violet",
+    cta: "Request information",
+    subjects_badge: "Available subjects",
+    subjects_h3: "Mathematics & Language Arts —",
+    subjects_h3b: "full coverage",
+    subjects_desc: "We cover all key areas for COAR, Scholarship 18, and university admission, with teachers specialized in each subject.",
+    materias: [
+      { label: "Arithmetic", emoji: "🔢" }, { label: "Algebra", emoji: "📐" },
+      { label: "Geometry", emoji: "📏" }, { label: "Trigonometry", emoji: "📊" },
+      { label: "Math Reasoning", emoji: "🧠" }, { label: "Communication", emoji: "📝" },
+      { label: "Reading Comprehension", emoji: "📖" }, { label: "English", emoji: "🌐" },
+    ],
+    spec_badge: "Specialization",
+    spec_h3: "Intensive focus on",
+    spec_h3b: "Mathematics",
+    spec_desc: "We strengthen the logical reasoning and analytical capacity of each student, with the highest level in the region.",
   },
-];
+}[lang];
 
-const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string; text: string }> = {
-  amber:  { bg: "bg-amber-50",  border: "border-amber-200",  icon: "text-amber-600  bg-amber-100",  badge: "bg-amber-100  text-amber-700",  text: "text-amber-600"  },
-  blue:   { bg: "bg-blue-50",   border: "border-blue-200",   icon: "text-blue-600   bg-blue-100",   badge: "bg-blue-100   text-blue-700",   text: "text-blue-700"   },
-  violet: { bg: "bg-violet-50", border: "border-violet-200", icon: "text-violet-600 bg-violet-100", badge: "bg-violet-100 text-violet-700", text: "text-violet-700" },
+const colorMap: Record<string, { bg: string; darkBg: string; border: string; darkBorder: string; icon: string; text: string }> = {
+  amber:  { bg: "bg-amber-50",  darkBg: "dark:bg-amber-950/20",  border: "border-amber-200",  darkBorder: "dark:border-amber-800/50",  icon: "text-amber-600 bg-amber-100 dark:bg-amber-900/40",  text: "text-amber-600 dark:text-amber-400"  },
+  blue:   { bg: "bg-blue-50",   darkBg: "dark:bg-blue-950/20",   border: "border-blue-200",   darkBorder: "dark:border-blue-800/50",   icon: "text-blue-600 bg-blue-100 dark:bg-blue-900/40",   text: "text-blue-700 dark:text-blue-400"   },
+  violet: { bg: "bg-violet-50", darkBg: "dark:bg-violet-950/20", border: "border-violet-200", darkBorder: "dark:border-violet-800/50", icon: "text-violet-600 bg-violet-100 dark:bg-violet-900/40", text: "text-violet-700 dark:text-violet-400" },
 };
-
-const materias = [
-  { label: "Aritmética",           emoji: "🔢" },
-  { label: "Álgebra",              emoji: "📐" },
-  { label: "Geometría",            emoji: "📏" },
-  { label: "Trigonometría",        emoji: "📊" },
-  { label: "Razonamiento Mat.",    emoji: "🧠" },
-  { label: "Comunicación",         emoji: "📝" },
-  { label: "Comprensión Lectora",  emoji: "📖" },
-  { label: "Inglés",               emoji: "🌐" },
-];
 ---
 
-<section id="programas" class="py-28 bg-white">
+<section id="programas" class="py-28 bg-white dark:bg-slate-900">
   <div class="max-w-7xl mx-auto px-6">
 
-    <!-- Encabezado -->
     <div class="text-center max-w-2xl mx-auto mb-20" data-reveal>
-      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
-        Programas académicos
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 px-4 py-1.5 rounded-full mb-5">
+        {t.badge}
       </span>
-      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 leading-tight">
-        Nuestros <span class="text-blue-700">Programas Académicos</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white leading-tight">
+        {t.h2.split(" ").slice(0,1).join(" ")} <span class="text-blue-700 dark:text-blue-400">{t.h2.split(" ").slice(1).join(" ")}</span>
       </h2>
-      <p class="mt-5 text-neutral-500 text-base leading-relaxed">
-        Formación especializada en Matemática y Letras, con preparación para COAR,
-        Beca 18 y universidades del país.
-      </p>
+      <p class="mt-5 text-neutral-500 dark:text-slate-400 text-base leading-relaxed">{t.desc}</p>
     </div>
 
-    <!-- Cards de programas -->
+    <!-- Cards programas -->
     <div class="grid md:grid-cols-3 gap-7 mb-24">
-      {programs.map((program, i) => {
+      {t.programs.map((program, i) => {
         const c = colorMap[program.color];
         return (
-          <div
-            data-reveal
-            data-reveal-delay={String(i + 1)}
-            class={`group relative flex flex-col rounded-3xl border ${c.border} ${c.bg} p-8 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300`}
+          <div data-reveal data-reveal-delay={String(i+1)}
+            class={`group relative flex flex-col rounded-3xl border ${c.border} ${c.darkBorder} ${c.bg} ${c.darkBg} p-8 hover:shadow-2xl dark:hover:shadow-slate-900/50 hover:-translate-y-1.5 transition-all duration-300`}
           >
-            <!-- Número decorativo de fondo -->
-            <span class="absolute top-6 right-6 text-7xl font-black opacity-[0.06] text-neutral-900 select-none leading-none">
-              {String(i + 1).padStart(2, "0")}
+            <span class="absolute top-6 right-6 text-7xl font-black opacity-[0.06] text-neutral-900 dark:text-white select-none leading-none">
+              {String(i+1).padStart(2,"0")}
             </span>
-
-            <!-- Ícono -->
-            <div class={`w-13 h-13 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${c.icon}`}>
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${c.icon}`}>
               <Icon name={program.icon} class="w-6 h-6" />
             </div>
-
-            <h3 class="text-xl font-extrabold text-neutral-900 mb-3">{program.title}</h3>
-            <p class="text-sm text-neutral-500 leading-relaxed mb-6">{program.description}</p>
-
+            <h3 class="text-xl font-extrabold text-neutral-900 dark:text-white mb-3">{program.title}</h3>
+            <p class="text-sm text-neutral-500 dark:text-slate-400 leading-relaxed mb-6">{program.description}</p>
             <ul class="space-y-2.5 mb-8">
               {program.points.map(point => (
-                <li class="flex items-start gap-2.5 text-sm text-neutral-700">
+                <li class="flex items-start gap-2.5 text-sm text-neutral-700 dark:text-slate-300">
                   <svg class={`w-4 h-4 mt-0.5 shrink-0 ${c.text}`} fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
                   </svg>
@@ -106,12 +102,8 @@ const materias = [
                 </li>
               ))}
             </ul>
-
-            <a
-              href="/#contacto"
-              class={`mt-auto inline-flex items-center gap-1.5 text-sm font-bold ${c.text} hover:underline underline-offset-4 transition-all`}
-            >
-              Solicitar información
+            <a href="#contacto" class={`mt-auto inline-flex items-center gap-1.5 text-sm font-bold ${c.text} hover:underline underline-offset-4 transition-all`}>
+              {t.cta}
               <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
             </a>
           </div>
@@ -119,67 +111,43 @@ const materias = [
       })}
     </div>
 
-    <!-- Bloque cursos disponibles -->
-    <div
-      data-reveal
-      class="bg-neutral-50 border border-neutral-200 rounded-3xl p-10 md:p-14 mb-24"
-    >
+    <!-- Cursos disponibles -->
+    <div data-reveal class="bg-neutral-50 dark:bg-slate-800 border border-neutral-200 dark:border-slate-700 rounded-3xl p-10 md:p-14 mb-24">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div>
-          <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
-            Cursos disponibles
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 px-4 py-1.5 rounded-full mb-5">
+            {t.subjects_badge}
           </span>
-          <h3 class="text-2xl md:text-3xl font-extrabold text-neutral-900 mb-4 leading-tight">
-            Matemáticas y Letras —<br />
-            <span class="text-blue-700">cobertura completa</span>
+          <h3 class="text-2xl md:text-3xl font-extrabold text-neutral-900 dark:text-white mb-4 leading-tight">
+            {t.subjects_h3}<br /><span class="text-blue-700 dark:text-blue-400">{t.subjects_h3b}</span>
           </h3>
-          <p class="text-neutral-500 text-base leading-relaxed">
-            Cubrimos todas las áreas clave para el ingreso a COAR, Beca 18 y
-            universidades, con docentes especializados en cada materia.
-          </p>
+          <p class="text-neutral-500 dark:text-slate-400 text-base leading-relaxed">{t.subjects_desc}</p>
         </div>
-
         <div class="grid grid-cols-2 gap-3">
-          {materias.map((m, i) => (
-            <div
-              data-reveal
-              data-reveal-delay={String((i % 4) + 1)}
-              class="flex items-center gap-3 bg-white border border-neutral-200 rounded-2xl px-4 py-3.5 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
+          {t.materias.map((m, i) => (
+            <div data-reveal data-reveal-delay={String((i%4)+1)}
+              class="flex items-center gap-3 bg-white dark:bg-slate-700 border border-neutral-200 dark:border-slate-600 rounded-2xl px-4 py-3.5 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-all duration-200"
             >
               <span class="text-xl leading-none">{m.emoji}</span>
-              <span class="text-sm font-semibold text-neutral-700">{m.label}</span>
+              <span class="text-sm font-semibold text-neutral-700 dark:text-slate-200">{m.label}</span>
             </div>
           ))}
         </div>
       </div>
     </div>
 
-    <!-- Especialización en Matemática (imagen destacada) -->
+    <!-- Banner imagen -->
     <div data-reveal class="relative rounded-3xl overflow-hidden">
-      <!-- Overlay con texto encima de la imagen -->
       <div class="relative aspect-[16/6] md:aspect-[16/5]">
-        <img
-          src="/imgAc.jpeg"
-          alt="Estudiantes resolviendo ejercicios matemáticos en Academia The Number One"
-          class="w-full h-full object-cover"
-        />
-        <!-- Overlay gradiente -->
+        <img src="/imgAc.jpeg" alt="Estudiantes resolviendo ejercicios matemáticos en Academia The Number One" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/70 to-transparent"></div>
-
-        <!-- Contenido sobre la imagen -->
         <div class="absolute inset-0 flex items-center px-8 md:px-16">
           <div class="max-w-xl">
-            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 bg-blue-900/60 border border-blue-700 px-4 py-1.5 rounded-full mb-5">
-              Especialización
-            </span>
+            <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 bg-blue-900/60 border border-blue-700 px-4 py-1.5 rounded-full mb-5">{t.spec_badge}</span>
             <h3 class="text-2xl md:text-4xl font-extrabold text-white leading-tight mb-4">
-              Enfoque intensivo en<br />
-              <span class="text-blue-300">Matemática</span>
+              {t.spec_h3}<br /><span class="text-blue-300">{t.spec_h3b}</span>
             </h3>
-            <p class="text-blue-100/80 text-base leading-relaxed max-w-md">
-              Fortalecemos el razonamiento lógico y la capacidad analítica de cada
-              estudiante, con el mejor nivel de la región.
-            </p>
+            <p class="text-blue-100/80 text-base leading-relaxed max-w-md">{t.spec_desc}</p>
           </div>
         </div>
       </div>
@@ -188,6 +156,4 @@ const materias = [
   </div>
 </section>
 
-<script>
-  import "../scripts/reveal.ts";
-</script>
+<script>import "../scripts/reveal.ts";</script>

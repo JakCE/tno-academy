@@ -1,70 +1,61 @@
 ---
 // src/components/Testimonios.astro
-const testimonials = [
-  {
-    name: "María Campos",
-    text: "Gracias a la academia logré ingresar al COAR. La preparación fue exigente pero muy efectiva.",
-    highlight: "Ingreso a COAR 2026",
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
+
+const t = {
+  es: {
+    badge: "Testimonios",
+    h2a: "Resultados que",
+    h2b: "hablan por sí solos",
+    desc: "Nuestros estudiantes son el reflejo de nuestro compromiso.",
+    testimonials: [
+      { name: "María Campos", text: "Gracias a la academia logré ingresar al COAR. La preparación fue exigente pero muy efectiva.", highlight: "Ingreso a COAR 2026" },
+      { name: "Elissa Doza", text: "El nivel de exigencia me ayudó bastante. Aprendí a resolver problemas más rápido y eso me permitió alcanzar una vacante en el COAR.", highlight: "Ingreso a COAR 2026" },
+      { name: "Jheyson Mejía", text: "La metodología es excelente. Logré ingresar a la universidad con una base sólida.", highlight: "Ingreso universitario" },
+    ],
   },
-  {
-    name: "Elissa Doza",
-    text: "El nivel de exigencia me ayudó bastante. Aprendí a resolver problemas más rápido y eso me permitió alcanzar una vacante en el COAR.",
-    highlight: "Ingreso a COAR 2026",
+  en: {
+    badge: "Testimonials",
+    h2a: "Results that",
+    h2b: "speak for themselves",
+    desc: "Our students reflect our commitment.",
+    testimonials: [
+      { name: "María Campos", text: "Thanks to the academy I managed to get into COAR. The preparation was demanding but very effective.", highlight: "COAR Admission 2026" },
+      { name: "Elissa Doza", text: "The level of rigor helped me a lot. I learned to solve problems faster, which allowed me to secure a spot at COAR.", highlight: "COAR Admission 2026" },
+      { name: "Jheyson Mejía", text: "The methodology is excellent. I got into university with a solid foundation.", highlight: "University admission" },
+    ],
   },
-  {
-    name: "Jheyson Mejía",
-    text: "La metodología es excelente. Logré ingresar a la universidad con una base sólida.",
-    highlight: "Ingreso universitario",
-  },
-];
+}[lang];
 ---
 
-<section id="testimonios" class="py-28 bg-white">
-
+<section id="testimonios" class="py-28 bg-white dark:bg-slate-900">
   <div class="max-w-7xl mx-auto px-6">
 
-    <!-- Header -->
     <div class="text-center max-w-2xl mx-auto mb-20" data-reveal>
-      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
-        Testimonios
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 px-4 py-1.5 rounded-full mb-5">
+        {t.badge}
       </span>
-
-      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">
-        Resultados que <span class="text-blue-700">hablan por sí solos</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white">
+        {t.h2a} <span class="text-blue-700 dark:text-blue-400">{t.h2b}</span>
       </h2>
-
-      <p class="mt-5 text-neutral-500">
-        Nuestros estudiantes son el reflejo de nuestro compromiso.
-      </p>
+      <p class="mt-5 text-neutral-500 dark:text-slate-400">{t.desc}</p>
     </div>
 
-    <!-- Cards -->
     <div class="grid md:grid-cols-3 gap-6">
-
-      {testimonials.map((t, i) => (
-        <div
-          data-reveal
-          data-reveal-delay={String(i + 1)}
-          class="p-7 rounded-3xl border border-neutral-200 bg-white hover:shadow-xl transition-all duration-300"
+      {t.testimonials.map((item, i) => (
+        <div data-reveal data-reveal-delay={String(i+1)}
+          class="p-7 rounded-3xl border border-neutral-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:shadow-xl dark:hover:shadow-slate-900/50 transition-all duration-300"
         >
           <div class="mb-4 text-yellow-400 text-lg">★★★★★</div>
-
-          <p class="text-sm text-neutral-600 leading-relaxed mb-6">
-            “{t.text}”
-          </p>
-
+          <p class="text-sm text-neutral-600 dark:text-slate-400 leading-relaxed mb-6">"{item.text}"</p>
           <div>
-            <p class="font-bold text-neutral-900">{t.name}</p>
-            <p class="text-xs text-blue-700 font-semibold">{t.highlight}</p>
+            <p class="font-bold text-neutral-900 dark:text-white">{item.name}</p>
+            <p class="text-xs text-blue-700 dark:text-blue-400 font-semibold">{item.highlight}</p>
           </div>
         </div>
       ))}
-
     </div>
 
   </div>
 </section>
-
-<script>
-  import "../scripts/reveal.ts";
-</script>
+<script>import "../scripts/reveal.ts";</script>

@@ -1,91 +1,63 @@
 ---
-// src/components/Contacto.astro
+// src/components/CTA.astro
 import { Icon } from "astro-icon/components";
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
+
+const t = {
+  es: {
+    badge: "Inscripciones abiertas",
+    h2a: "Prepárate hoy para",
+    h2b: "lograr tus objetivos académicos",
+    desc: "Forma parte de la academia referente en Atalaya. Desarrolla tu potencial con una metodología enfocada en resultados reales y preparación de alto nivel.",
+    btn1: "Solicitar información",
+    btn2: "Escribir por WhatsApp",
+    trust: ["✔ Atención personalizada", "✔ Grupos reducidos", "✔ Resultados comprobados"],
+  },
+  en: {
+    badge: "Open enrollment",
+    h2a: "Start preparing today to",
+    h2b: "achieve your academic goals",
+    desc: "Join the leading academy in Atalaya. Develop your potential with a results-focused methodology and high-level preparation.",
+    btn1: "Request information",
+    btn2: "Message on WhatsApp",
+    trust: ["✔ Personalized attention", "✔ Small groups", "✔ Proven results"],
+  },
+}[lang];
 ---
 
 <section id="contacto" class="relative py-28 bg-blue-950 overflow-hidden">
-
-  <!-- Background decor -->
-  <div class="absolute inset-0 opacity-10 pointer-events-none"
-    style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;">
-  </div>
-
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 32px 32px;"></div>
   <div class="absolute -top-40 -left-40 w-[500px] h-[500px] bg-blue-700 rounded-full blur-[140px] opacity-20 pointer-events-none"></div>
   <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] bg-blue-600 rounded-full blur-[140px] opacity-20 pointer-events-none"></div>
 
   <div class="relative max-w-4xl mx-auto px-6 text-center text-white">
 
-    <!-- Badge -->
     <div data-reveal>
-      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 bg-blue-900 border border-blue-700 px-4 py-1.5 rounded-full mb-6">
-        Inscripciones abiertas
-      </span>
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-300 bg-blue-900 border border-blue-700 px-4 py-1.5 rounded-full mb-6">{t.badge}</span>
     </div>
 
-    <!-- Title -->
-    <h2
-      data-reveal
-      data-reveal-delay="1"
-      class="text-3xl md:text-4xl xl:text-5xl font-extrabold leading-tight tracking-tight"
-    >
-      Prepárate hoy para
-      <br />
-      <span class="text-blue-300">lograr tus objetivos académicos</span>
+    <h2 data-reveal data-reveal-delay="1" class="text-3xl md:text-4xl xl:text-5xl font-extrabold leading-tight tracking-tight">
+      {t.h2a}<br /><span class="text-blue-300">{t.h2b}</span>
     </h2>
 
-    <!-- Description -->
-    <p
-      data-reveal
-      data-reveal-delay="2"
-      class="mt-6 text-base md:text-lg text-blue-200/80 leading-relaxed max-w-2xl mx-auto"
-    >
-      Forma parte de la academia referente en Atalaya. Desarrolla tu potencial con una
-      metodología enfocada en resultados reales y preparación de alto nivel.
-    </p>
+    <p data-reveal data-reveal-delay="2" class="mt-6 text-base md:text-lg text-blue-200/80 leading-relaxed max-w-2xl mx-auto">{t.desc}</p>
 
-    <!-- Buttons -->
-    <div
-      data-reveal
-      data-reveal-delay="3"
-      class="mt-10 flex flex-col sm:flex-row justify-center gap-4"
-    >
-
-      <!-- CTA principal -->
-      <a
-        href="/#contacto"
-        class="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-neutral-100 transition-all duration-200 shadow-lg hover:-translate-y-0.5"
-      >
+    <div data-reveal data-reveal-delay="3" class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#contacto" class="inline-flex items-center justify-center gap-2 bg-white text-blue-700 font-bold px-7 py-3.5 rounded-xl hover:bg-neutral-100 transition-all duration-200 shadow-lg hover:-translate-y-0.5">
         <Icon name="heroicons:academic-cap" class="w-5 h-5" />
-        Solicitar información
+        {t.btn1}
       </a>
-
-      <!-- WhatsApp -->
-      <a
-        href="https://wa.me/51981696561?text=Hola%2C%20quiero%20información%20sobre%20la%20academia"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-white hover:text-blue-700 transition-all duration-200"
-      >
+      <a href="https://wa.me/51981696561?text=Hola%2C%20quiero%20información%20sobre%20la%20academia" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-bold px-7 py-3.5 rounded-xl hover:bg-white hover:text-blue-700 transition-all duration-200">
         <Icon name="heroicons:chat-bubble-left-right" class="w-5 h-5" />
-        Escribir por WhatsApp
+        {t.btn2}
       </a>
-
     </div>
 
-    <!-- Extra confianza -->
-    <div
-      data-reveal
-      data-reveal-delay="4"
-      class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-blue-300/80"
-    >
-      <span>✔ Atención personalizada</span>
-      <span>✔ Grupos reducidos</span>
-      <span>✔ Resultados comprobados</span>
+    <div data-reveal data-reveal-delay="4" class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-blue-300/80">
+      {t.trust.map(item => <span>{item}</span>)}
     </div>
 
   </div>
 </section>
-
-<script>
-  import "../scripts/reveal.ts";
-</script>
+<script>import "../scripts/reveal.ts";</script>

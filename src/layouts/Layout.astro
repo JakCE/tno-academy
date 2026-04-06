@@ -53,6 +53,15 @@ const {
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Dark mode: prevenir flash antes de que cargue CSS -->
+    <script is:inline>
+      (function(){
+        var t = localStorage.getItem('theme');
+        var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (t === 'dark' || (!t && d)) document.documentElement.classList.add('dark');
+      })();
+    </script>
+
     <!-- Google Tag Manager -->
     <script is:inline>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -103,7 +112,7 @@ const {
     </style>
   </head>
 
-  <body class="bg-white text-gray-800 antialiased">
+  <body class="bg-white dark:bg-slate-950 text-gray-800 dark:text-slate-200 antialiased">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53V7LT6M"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

@@ -8,54 +8,69 @@ interface Props {
   quickLinks?: { label: string; href: string }[];
 }
 
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
+
+const defaults = {
+  es: {
+    brand: "Academia The Number One",
+    brandDescription: "Academia referente en la provincia de Atalaya, región Ucayali. Especializados en Matemática, preparación COAR y preuniversitaria, formando estudiantes con visión y excelencia académica.",
+    nav: "Navegación",
+    contact: "Contacto",
+    address: "Provincia de Atalaya, Ucayali – Perú",
+    tagline: "Formando líderes del futuro 📘",
+    rights: "Todos los derechos reservados.",
+    quickLinks: [
+      { label: "Inicio",      href: "#inicio"      },
+      { label: "Programas",   href: "#programas"   },
+      { label: "Metodología", href: "#metodologia" },
+      { label: "Contacto",    href: "#contacto"    },
+    ],
+  },
+  en: {
+    brand: "The Number One Academy",
+    brandDescription: "Reference academy in the province of Atalaya, Ucayali region. Specialized in Mathematics, COAR preparation and pre-university, training students with vision and academic excellence.",
+    nav: "Navigation",
+    contact: "Contact",
+    address: "Province of Atalaya, Ucayali – Peru",
+    tagline: "Building future leaders 📘",
+    rights: "All rights reserved.",
+    quickLinks: [
+      { label: "Home",        href: "#inicio"      },
+      { label: "Programs",    href: "#programas"   },
+      { label: "Methodology", href: "#metodologia" },
+      { label: "Contact",     href: "#contacto"    },
+    ],
+  },
+}[lang];
+
 const {
-  brand = "Academia The Number One",
-  brandDescription = "Academia referente en la provincia de Atalaya, región Ucayali. Especializados en Matemática, preparación COAR y preuniversitaria, formando estudiantes con visión y excelencia académica.",
-  quickLinks = [
-    { label: "Inicio",      href: "#inicio"      },
-    { label: "Programas",   href: "#programas"   },
-    { label: "Metodología", href: "#metodologia" },
-    { label: "Contacto",    href: "#contacto"    },
-  ],
+  brand            = defaults.brand,
+  brandDescription = defaults.brandDescription,
+  quickLinks       = defaults.quickLinks,
 } = Astro.props;
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="relative bg-white pt-24 pb-10 overflow-hidden border-t border-neutral-200">
-
-  <!-- Background decor suave -->
-  <div class="absolute -top-32 -right-32 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] opacity-60 pointer-events-none"></div>
-  <div class="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-100 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
+<footer class="relative bg-white dark:bg-slate-900 pt-24 pb-10 overflow-hidden border-t border-neutral-200 dark:border-slate-700">
+  <div class="absolute -top-32 -right-32 w-[400px] h-[400px] bg-blue-50 dark:bg-blue-950/20 rounded-full blur-[120px] opacity-60 pointer-events-none"></div>
+  <div class="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-blue-100 dark:bg-blue-900/10 rounded-full blur-[120px] opacity-40 pointer-events-none"></div>
 
   <div class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-14 md:gap-16">
 
-    <!-- 🔹 Columna 1 -->
+    <!-- Columna 1: Brand -->
     <div data-reveal>
-      <img
-        src="/Logo Academia SF.png"
-        alt="Academia The Number One"
-        class="h-14 w-auto mb-6"
-      />
-
-      <p class="text-sm leading-relaxed text-neutral-500 max-w-sm">
-        {brandDescription}
-      </p>
+      <img src="/Logo Academia SF.png" alt={brand} class="h-14 w-auto mb-6 dark:brightness-125" />
+      <p class="text-sm leading-relaxed text-neutral-500 dark:text-slate-400 max-w-sm">{brandDescription}</p>
     </div>
 
-    <!-- 🔹 Columna 2 -->
+    <!-- Columna 2: Links -->
     <div data-reveal data-reveal-delay="1">
-      <h3 class="text-neutral-900 font-extrabold mb-6 text-lg">
-        Navegación
-      </h3>
-
+      <h3 class="text-neutral-900 dark:text-white font-extrabold mb-6 text-lg">{defaults.nav}</h3>
       <ul class="space-y-3 text-sm">
         {quickLinks.map((link) => (
           <li>
-            <a
-              href={link.href}
-              class="group inline-flex items-center gap-2 text-neutral-500 hover:text-blue-700 transition-all duration-200"
-            >
+            <a href={link.href} class="group inline-flex items-center gap-2 text-neutral-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-400 transition-all duration-200">
               <span class="w-1.5 h-1.5 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition"></span>
               {link.label}
             </a>
@@ -64,73 +79,37 @@ const year = new Date().getFullYear();
       </ul>
     </div>
 
-    <!-- 🔹 Columna 3 -->
+    <!-- Columna 3: Contacto -->
     <div data-reveal data-reveal-delay="2">
-      <h3 class="text-neutral-900 font-extrabold mb-6 text-lg">
-        Contacto
-      </h3>
-
+      <h3 class="text-neutral-900 dark:text-white font-extrabold mb-6 text-lg">{defaults.contact}</h3>
       <div class="space-y-4 text-sm">
-
-        <div class="flex items-start gap-3 text-neutral-500">
-          <Icon name="heroicons:map-pin" class="w-5 h-5 text-blue-600 mt-0.5" />
-          <span>Provincia de Atalaya, Ucayali – Perú</span>
+        <div class="flex items-start gap-3 text-neutral-500 dark:text-slate-400">
+          <Icon name="heroicons:map-pin" class="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+          <span>{defaults.address}</span>
         </div>
-
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:phone" class="w-5 h-5 text-blue-600" />
-          <a
-            href="tel:+51981696561"
-            class="text-neutral-500 hover:text-blue-700 transition"
-          >
-            +51 981 696 561
-          </a>
+          <Icon name="heroicons:phone" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <a href="tel:+51981696561" class="text-neutral-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-400 transition">+51 981 696 561</a>
         </div>
-
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:envelope" class="w-5 h-5 text-blue-600" />
-          <a
-            href="mailto:sethenumberone@gmail.com"
-            class="text-neutral-500 hover:text-blue-700 transition"
-          >
-            sethenumberone@gmail.com
-          </a>
+          <Icon name="heroicons:envelope" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <a href="mailto:sethenumberone@gmail.com" class="text-neutral-500 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-400 transition">sethenumberone@gmail.com</a>
         </div>
-
         <div class="flex items-center gap-3">
-          <Icon name="heroicons:chat-bubble-left-right" class="w-5 h-5 text-green-600" />
-          <a
-            href="https://wa.me/51981696561?text=Hola%2C%20quiero%20información%20sobre%20la%20academia"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-neutral-500 hover:text-green-700 transition"
-          >
-            WhatsApp
-          </a>
+          <Icon name="heroicons:chat-bubble-left-right" class="w-5 h-5 text-green-600 dark:text-green-400" />
+          <a href="https://wa.me/51981696561?text=Hola%2C%20quiero%20información%20sobre%20la%20academia" target="_blank" rel="noopener noreferrer" class="text-neutral-500 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-400 transition">WhatsApp</a>
         </div>
-
       </div>
     </div>
 
   </div>
 
-  <!-- Divider -->
-  <div class="relative max-w-7xl mx-auto px-6 mt-16 pt-6 border-t border-neutral-200">
-
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
-
-      <p>
-        © {year} {brand}. Todos los derechos reservados.
-      </p>
-
-      <p class="text-neutral-400">
-        Formando líderes del futuro 📘
-      </p>
-
+  <div class="relative max-w-7xl mx-auto px-6 mt-16 pt-6 border-t border-neutral-200 dark:border-slate-700">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400 dark:text-slate-500">
+      <p>© {year} {brand}. {defaults.rights}</p>
+      <p>{defaults.tagline}</p>
     </div>
-
   </div>
-
 </footer>
 
 <script>

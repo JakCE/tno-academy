@@ -1,0 +1,54 @@
+---
+// src/pages/en/academia.astro — Astro.currentLocale auto = 'en'
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import Stats from "../../components/Stats.astro";
+import Programas from "../../components/Programas.astro";
+import CTA from "../../components/CTA.astro";
+import Metodologia from "../../components/Metodologia.astro";
+import Galeria from "../../components/Galeria.astro";
+import AudioPlayer from "../../components/AudioPlayer.astro";
+import FAQ from "../../components/FAQ.astro";
+import Testimonios from "../../components/Testimonios.astro";
+import "../../styles/global.css";
+
+const navItems = [
+  { label: "Home",        href: "#inicio"      },
+  { label: "Programs",    href: "#programas"   },
+  { label: "Methodology", href: "#metodologia" },
+  { label: "Gallery",     href: "#galeria"     },
+  { label: "Contact",     href: "#contacto"    },
+];
+
+const footerQuickLinks = [
+  { label: "Home",        href: "#inicio"      },
+  { label: "Programs",    href: "#programas"   },
+  { label: "Methodology", href: "#metodologia" },
+  { label: "Contact",     href: "#contacto"    },
+];
+---
+
+<Layout
+  title="The Number One Academy | Quality Education in Atalaya, Ucayali"
+  description="Primary and Secondary leveling, COAR, Scholarship 18 and pre-university preparation in Atalaya, Ucayali. Over 10 years shaping leaders."
+  navItems={navItems}
+  ctaPrimary={{ label: "Enroll", href: "#contacto" }}
+  footerQuickLinks={footerQuickLinks}
+  showModal={false}
+>
+  <Hero />
+  <!-- Official song player -->
+  <section class="bg-blue-50 dark:bg-slate-900 border-y border-blue-100 dark:border-slate-700 py-8 px-4">
+    <p class="text-center text-sm text-blue-400 font-semibold tracking-wide mb-4">
+      🎵 Listen to our official song
+    </p>
+    <AudioPlayer audioSrc="/audio/cancion-tno.mpeg" />
+  </section>
+  <Programas />
+  <Metodologia />
+  <Stats />
+  <Testimonios />
+  <Galeria />
+  <FAQ />
+  <CTA />
+</Layout>

@@ -1,82 +1,67 @@
 ---
 // src/components/FAQ.astro
-const faqs = [
-  {
-    q: "¿Qué niveles educativos atienden?",
-    a: "Brindamos nivelación y reforzamiento académico para estudiantes de primaria y secundaria, así como preparación preuniversitaria.",
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
+
+const t = {
+  es: {
+    badge: "Preguntas frecuentes",
+    h2a: "Resolvemos tus",
+    h2b: "dudas",
+    faqs: [
+      { q: "¿Qué niveles educativos atienden?", a: "Brindamos nivelación y reforzamiento académico para estudiantes de primaria y secundaria, así como preparación preuniversitaria." },
+      { q: "¿Qué tipo de preparación ofrecen?", a: "Contamos con preparación especializada para COAR, Beca 18 y exámenes de admisión universitarios, con simulacros y práctica intensiva." },
+      { q: "¿Qué cursos dictan?", a: "En Matemáticas enseñamos Aritmética, Álgebra, Geometría, Trigonometría y Razonamiento Matemático. En Letras, Comunicación, Comprensión Lectora e Inglés." },
+      { q: "¿Dónde están ubicados?", a: "Nos encontramos en Jr. Rímac Mz 23 Lt 1f, frente a la IE Hildebrando Fuentes (Ref: Librería San Antonio, 1er piso), en Atalaya, Ucayali." },
+      { q: "¿Cómo puedo inscribirme?", a: "Puedes inscribirte escribiéndonos por WhatsApp o llamando a cualquiera de nuestros números. Nuestro equipo te brindará toda la información necesaria." },
+      { q: "¿Cuándo inician las clases?", a: "Las clases inician este lunes 6 de abril. Te recomendamos inscribirte con anticipación para asegurar tu vacante." },
+      { q: "¿Cómo puedo contactarlos?", a: "Puedes llamarnos o escribirnos a los siguientes números: 929 469 555, 949 544 537 o 907 383 283." },
+      { q: "¿Por qué elegir Academia The Number One?", a: "Contamos con más de 10 años de experiencia formando estudiantes, metodología enfocada en resultados y preparación especializada para COAR, Beca 18 y universidades." },
+    ],
   },
-  {
-    q: "¿Qué tipo de preparación ofrecen?",
-    a: "Contamos con preparación especializada para COAR, Beca 18 y exámenes de admisión universitarios, con simulacros y práctica intensiva.",
+  en: {
+    badge: "Frequently asked questions",
+    h2a: "We answer",
+    h2b: "your questions",
+    faqs: [
+      { q: "What educational levels do you serve?", a: "We provide leveling and academic reinforcement for primary and secondary students, as well as pre-university preparation." },
+      { q: "What type of preparation do you offer?", a: "We have specialized preparation for COAR, Scholarship 18, and university admission exams, with practice tests and intensive training." },
+      { q: "What subjects do you teach?", a: "In Mathematics we teach Arithmetic, Algebra, Geometry, Trigonometry, and Mathematical Reasoning. In Language Arts: Communication, Reading Comprehension, and English." },
+      { q: "Where are you located?", a: "We are located at Jr. Rímac Mz 23 Lt 1f, in front of IE Hildebrando Fuentes (Ref: Librería San Antonio, 1st floor), in Atalaya, Ucayali." },
+      { q: "How can I enroll?", a: "You can enroll by contacting us via WhatsApp or calling any of our phone numbers. Our team will provide you with all the necessary information." },
+      { q: "When do classes start?", a: "Classes start this Monday, April 6th. We recommend enrolling early to secure your spot." },
+      { q: "How can I contact you?", a: "You can call or message us at: 929 469 555, 949 544 537, or 907 383 283." },
+      { q: "Why choose The Number One Academy?", a: "We have over 10 years of experience training students, a results-focused methodology, and specialized preparation for COAR, Scholarship 18, and universities." },
+    ],
   },
-  {
-    q: "¿Qué cursos dictan?",
-    a: "En Matemáticas enseñamos Aritmética, Álgebra, Geometría, Trigonometría y Razonamiento Matemático. En Letras, Comunicación, Comprensión Lectora e Inglés.",
-  },
-  {
-    q: "¿Dónde están ubicados?",
-    a: "Nos encontramos en Jr. Rímac Mz 23 Lt 1f, frente a la IE Hildebrando Fuentes (Referencia: Librería San Antonio, 1er piso), en Atalaya, Ucayali.",
-  },
-  {
-    q: "¿Cómo puedo inscribirme?",
-    a: "Puedes inscribirte escribiéndonos por WhatsApp o llamando a cualquiera de nuestros números. Nuestro equipo te brindará toda la información necesaria.",
-  },
-  {
-    q: "¿Cuándo inician las clases?",
-    a: "Las clases inician este lunes 6 de abril. Te recomendamos inscribirte con anticipación para asegurar tu vacante.",
-  },
-  {
-    q: "¿Cómo puedo contactarlos?",
-    a: "Puedes llamarnos o escribirnos a los siguientes números: 929 469 555, 949 544 537 o 907 383 283.",
-  },
-  {
-    q: "¿Por qué elegir Academia The Number One?",
-    a: "Contamos con más de 10 años de experiencia formando estudiantes, metodología enfocada en resultados y preparación especializada para COAR, Beca 18 y universidades."
-  },
-];
+}[lang];
 ---
 
-<section id="faq" class="py-28 bg-neutral-50">
-
+<section id="faq" class="py-28 bg-neutral-50 dark:bg-slate-950">
   <div class="max-w-4xl mx-auto px-6">
 
-    <!-- Header -->
     <div class="text-center mb-16" data-reveal>
-      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-200 px-4 py-1.5 rounded-full mb-5">
-        Preguntas frecuentes
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 px-4 py-1.5 rounded-full mb-5">
+        {t.badge}
       </span>
-
-      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900">
-        Resolvemos tus <span class="text-blue-700">dudas</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white">
+        {t.h2a} <span class="text-blue-700 dark:text-blue-400">{t.h2b}</span>
       </h2>
     </div>
 
-    <!-- Acordeón -->
     <div class="space-y-4">
-
-      {faqs.map((item, i) => (
-        <div
-          data-reveal
-          data-reveal-delay={String(i + 1)}
-          class="border border-neutral-200 rounded-2xl bg-white overflow-hidden"
+      {t.faqs.map((item, i) => (
+        <div data-reveal data-reveal-delay={String(i+1)}
+          class="border border-neutral-200 dark:border-slate-700 rounded-2xl bg-white dark:bg-slate-800 overflow-hidden"
         >
-
-          <button
-            class="faq-btn w-full flex items-center justify-between px-6 py-4 text-left"
-          >
-            <span class="font-semibold text-neutral-900">{item.q}</span>
-            <span class="text-blue-700">+</span>
+          <button class="faq-btn w-full flex items-center justify-between px-6 py-4 text-left">
+            <span class="font-semibold text-neutral-900 dark:text-white">{item.q}</span>
+            <span class="text-blue-700 dark:text-blue-400 text-xl leading-none shrink-0 ml-3">+</span>
           </button>
-
           <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 px-6">
-            <p class="py-4 text-sm text-neutral-600">
-              {item.a}
-            </p>
+            <p class="py-4 text-sm text-neutral-600 dark:text-slate-400">{item.a}</p>
           </div>
-
         </div>
       ))}
-
     </div>
 
   </div>
@@ -84,22 +69,15 @@ const faqs = [
 
 <script>
   import "../scripts/reveal.ts";
-
   const buttons = document.querySelectorAll(".faq-btn");
-
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const content = btn.nextElementSibling as HTMLElement | null;
-
       if (!content) return;
-
       if (content.style.maxHeight) {
         content.style.maxHeight = "";
       } else {
-        document.querySelectorAll(".faq-content").forEach((c) => {
-          (c as HTMLElement).style.maxHeight = "";
-        });
-
+        document.querySelectorAll(".faq-content").forEach((c) => { (c as HTMLElement).style.maxHeight = ""; });
         content.style.maxHeight = content.scrollHeight + "px";
       }
     });

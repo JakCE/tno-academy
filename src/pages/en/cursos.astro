@@ -1,20 +1,20 @@
 ---
-// src/pages/cursos.astro — Cursos & Talleres con Certificado
-import Layout from "../layouts/Layout.astro";
-import "../styles/global.css";
+// src/pages/en/cursos.astro — Courses & Workshops (English) — Astro.currentLocale auto = 'en'
+import Layout from "../../layouts/Layout.astro";
+import "../../styles/global.css";
 
 const navItems = [
-  { label: "Inicio",   href: "/"         },
-  { label: "Academia", href: "/academia"  },
-  { label: "Cursos",   href: "#cursos"   },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Home",     href: "/en"          },
+  { label: "Academy",  href: "/en/academia" },
+  { label: "Courses",  href: "#cursos"      },
+  { label: "Contact",  href: "#contacto"    },
 ];
 
 const footerQuickLinks = [
-  { label: "Inicio",   href: "/"         },
-  { label: "Academia", href: "/academia"  },
-  { label: "Cursos",   href: "#cursos"   },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Home",     href: "/en"          },
+  { label: "Academy",  href: "/en/academia" },
+  { label: "Courses",  href: "#cursos"      },
+  { label: "Contact",  href: "#contacto"    },
 ];
 
 const WA = "51929469555";
@@ -24,184 +24,181 @@ const courses = [
     id: "computacion-basica",
     emoji: "💻",
     color: "blue",
-    name: "Computación Básica e Internet",
-    tag: "Para principiantes",
-    duration: "4 semanas",
-    audience: "Personas sin experiencia con computadoras",
+    name: "Basic Computing & Internet",
+    tag: "For beginners",
+    duration: "4 weeks",
+    audience: "People with no computer experience",
     description:
-      "Aprende a usar la computadora desde cero. Ideal si quieres empezar en el mundo digital o necesitas el básico para tu trabajo.",
+      "Learn to use a computer from scratch. Ideal if you want to start in the digital world or need the basics for your job.",
     modules: [
-      "Manejo del computador: mouse, teclado y Windows",
-      "Organización de archivos y carpetas",
-      "Navegación en Internet y búsquedas",
-      "Correo electrónico con Gmail",
-      "WhatsApp Web y videollamadas",
-      "Seguridad básica en internet",
+      "Computer basics: mouse, keyboard and Windows",
+      "File and folder organization",
+      "Internet browsing and searches",
+      "Email with Gmail",
+      "WhatsApp Web and video calls",
+      "Basic internet safety",
     ],
-    wsp: "Hola, me interesa el curso de *Computación Básica e Internet*. ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Basic Computing & Internet* course. Can you give me more information about schedules and cost?",
   },
   {
     id: "ofimatica",
     emoji: "📄",
     color: "indigo",
-    name: "Ofimática Básica",
-    tag: "Más solicitado",
-    duration: "6 semanas",
-    audience: "Trabajadores y docentes que necesitan certificado",
+    name: "Basic Office Suite",
+    tag: "Most requested",
+    duration: "6 weeks",
+    audience: "Workers and teachers who need a certificate",
     description:
-      "Domina Word, Excel y PowerPoint para el trabajo. Al finalizar recibes tu certificado de participación, válido para presentar en tu institución.",
+      "Master Word, Excel and PowerPoint for work. Upon completion you receive your participation certificate, valid to present at your institution.",
     modules: [
-      "Word: documentos, tablas, formato e impresión",
-      "Excel: hojas de cálculo y fórmulas básicas",
-      "Excel: organización y presentación de datos",
-      "PowerPoint: presentaciones profesionales",
-      "Casos prácticos aplicados al trabajo",
-      "Certificado de participación al finalizar",
+      "Word: documents, tables, formatting and printing",
+      "Excel: spreadsheets and basic formulas",
+      "Excel: data organization and presentation",
+      "PowerPoint: professional presentations",
+      "Practical cases applied to work",
+      "Participation certificate upon completion",
     ],
-    wsp: "Hola, me interesa el curso de *Ofimática Básica* (Word, Excel, PowerPoint). ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Basic Office Suite* course (Word, Excel, PowerPoint). Can you give me more information about schedules and cost?",
   },
   {
     id: "excel-intermedio",
     emoji: "📊",
     color: "emerald",
-    name: "Excel Intermedio para el Trabajo",
-    tag: "Para administrativos",
-    duration: "4 semanas",
-    audience: "Trabajadores y docentes con conocimiento básico de Excel",
+    name: "Intermediate Excel for Work",
+    tag: "For administrators",
+    duration: "4 weeks",
+    audience: "Workers and teachers with basic Excel knowledge",
     description:
-      "Lleva tu Excel al siguiente nivel. Aprende funciones avanzadas para crear reportes, análisis y automatizar tareas repetitivas.",
+      "Take your Excel to the next level. Learn advanced functions to create reports, analysis and automate repetitive tasks.",
     modules: [
-      "Funciones: BUSCARV, SI, SUMAR.SI, CONTAR.SI",
-      "Tablas dinámicas y segmentadores",
-      "Gráficos estadísticos y de gestión",
-      "Formato condicional y validación de datos",
-      "Reportes y dashboards básicos",
-      "Plantillas reutilizables para el trabajo",
+      "Functions: VLOOKUP, IF, SUMIF, COUNTIF",
+      "Pivot tables and slicers",
+      "Statistical and management charts",
+      "Conditional formatting and data validation",
+      "Basic reports and dashboards",
+      "Reusable templates for work",
     ],
-    wsp: "Hola, me interesa el curso de *Excel Intermedio para el Trabajo*. ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Intermediate Excel for Work* course. Can you give me more information about schedules and cost?",
   },
   {
     id: "canva",
     emoji: "🎨",
     color: "pink",
-    name: "Diseño Digital con Canva",
-    tag: "Creativo y práctico",
-    duration: "3 semanas",
-    audience: "Docentes, comerciantes y emprendedores",
+    name: "Digital Design with Canva",
+    tag: "Creative & practical",
+    duration: "3 weeks",
+    audience: "Teachers, merchants and entrepreneurs",
     description:
-      "Crea materiales visuales atractivos sin ser diseñador. Flyers, carteles, diplomas y contenido para redes sociales en minutos.",
+      "Create attractive visual materials without being a designer. Flyers, posters, diplomas and social media content in minutes.",
     modules: [
-      "Introducción a Canva (versión gratuita)",
-      "Diseño de flyers y carteles publicitarios",
-      "Creación de diplomas y certificados",
-      "Presentaciones modernas y animadas",
-      "Posts y contenido para redes sociales",
-      "Exportación e impresión de materiales",
+      "Introduction to Canva (free version)",
+      "Flyer and advertising poster design",
+      "Diploma and certificate creation",
+      "Modern and animated presentations",
+      "Posts and content for social media",
+      "Exporting and printing materials",
     ],
-    wsp: "Hola, me interesa el curso de *Diseño Digital con Canva*. ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Digital Design with Canva* course. Can you give me more information about schedules and cost?",
   },
   {
     id: "google-workspace",
     emoji: "☁️",
     color: "amber",
     name: "Google Workspace",
-    tag: "Herramientas Google",
-    duration: "3 semanas",
-    audience: "Trabajadores y docentes",
+    tag: "Google tools",
+    duration: "3 weeks",
+    audience: "Workers and teachers",
     description:
-      "Aprende a usar todas las herramientas de Google para trabajar de forma organizada, colaborativa y desde cualquier dispositivo.",
+      "Learn to use all Google tools to work in an organized, collaborative way from any device.",
     modules: [
-      "Gmail profesional: organización y filtros",
-      "Google Drive: almacenamiento y carpetas compartidas",
-      "Google Docs y Sheets colaborativos",
-      "Google Forms: encuestas y evaluaciones",
-      "Google Meet: reuniones y clases virtuales",
-      "Google Calendar: agenda y recordatorios",
+      "Professional Gmail: organization and filters",
+      "Google Drive: storage and shared folders",
+      "Google Docs and Sheets collaboration",
+      "Google Forms: surveys and assessments",
+      "Google Meet: meetings and virtual classes",
+      "Google Calendar: agenda and reminders",
     ],
-    wsp: "Hola, me interesa el curso de *Google Workspace*. ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Google Workspace* course. Can you give me more information about schedules and cost?",
   },
   {
     id: "herramientas-docentes",
     emoji: "🏫",
     color: "violet",
-    name: "Herramientas Digitales para Docentes",
-    tag: "Para profesores",
-    duration: "4 semanas",
-    audience: "Docentes de primaria y secundaria",
+    name: "Digital Tools for Teachers",
+    tag: "For educators",
+    duration: "4 weeks",
+    audience: "Primary and secondary school teachers",
     description:
-      "Capacitación específica para maestros: registro de notas, evaluaciones digitales, aula virtual y comunicación con padres de familia.",
+      "Specific training for teachers: grade records, digital assessments, virtual classroom and parent communication.",
     modules: [
-      "SIAGIE: registro de asistencia y calificaciones",
-      "Excel para actas y cuadros de méritos",
-      "Google Classroom: aula virtual básica",
-      "Evaluaciones con Google Forms",
-      "Creación de material didáctico digital",
-      "Comunicación con padres vía Meet y WhatsApp",
+      "SIAGIE: attendance and grade registration",
+      "Excel for records and merit charts",
+      "Google Classroom: basic virtual classroom",
+      "Assessments with Google Forms",
+      "Digital teaching material creation",
+      "Parent communication via Meet and WhatsApp",
     ],
-    wsp: "Hola, me interesa el curso de *Herramientas Digitales para Docentes*. ¿Pueden darme más información sobre horarios y costo?",
+    wsp: "Hello, I'm interested in the *Digital Tools for Teachers* course. Can you give me more information about schedules and cost?",
   },
 ];
 
-const colorMap: Record<string, { border: string; badge: string; dot: string; btn: string; btnHover: string; icon: string }> = {
-  blue:    { border: "hover:border-blue-500/50",    badge: "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400",    dot: "bg-blue-500",    btn: "bg-blue-600",    btnHover: "hover:bg-blue-700",    icon: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/50" },
-  indigo:  { border: "hover:border-indigo-500/50",  badge: "bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400",  dot: "bg-indigo-500",  btn: "bg-indigo-600",  btnHover: "hover:bg-indigo-700",  icon: "text-indigo-600 bg-indigo-50 dark:text-indigo-400 dark:bg-indigo-950/50" },
-  emerald: { border: "hover:border-emerald-500/50", badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-500", btn: "bg-emerald-600", btnHover: "hover:bg-emerald-700", icon: "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/50" },
-  pink:    { border: "hover:border-pink-500/50",    badge: "bg-pink-500/10 border-pink-500/20 text-pink-600 dark:text-pink-400",    dot: "bg-pink-500",    btn: "bg-pink-600",    btnHover: "hover:bg-pink-700",    icon: "text-pink-600 bg-pink-50 dark:text-pink-400 dark:bg-pink-950/50" },
-  amber:   { border: "hover:border-amber-500/50",   badge: "bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-400",   dot: "bg-amber-500",   btn: "bg-amber-500",   btnHover: "hover:bg-amber-600",   icon: "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-950/50" },
-  violet:  { border: "hover:border-violet-500/50",  badge: "bg-violet-500/10 border-violet-500/20 text-violet-600 dark:text-violet-400",  dot: "bg-violet-500",  btn: "bg-violet-600",  btnHover: "hover:bg-violet-700",  icon: "text-violet-600 bg-violet-50 dark:text-violet-400 dark:bg-violet-950/50" },
+const colorMap: Record<string, { border: string; badge: string; dot: string; btn: string; btnHover: string; icon: string; darkIcon: string }> = {
+  blue:    { border: "hover:border-blue-500/50",    badge: "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400",    dot: "bg-blue-500",    btn: "bg-blue-600",    btnHover: "hover:bg-blue-700",    icon: "text-blue-600 bg-blue-50",    darkIcon: "dark:text-blue-400 dark:bg-blue-950/50" },
+  indigo:  { border: "hover:border-indigo-500/50",  badge: "bg-indigo-500/10 border-indigo-500/20 text-indigo-600 dark:text-indigo-400",  dot: "bg-indigo-500",  btn: "bg-indigo-600",  btnHover: "hover:bg-indigo-700",  icon: "text-indigo-600 bg-indigo-50",  darkIcon: "dark:text-indigo-400 dark:bg-indigo-950/50" },
+  emerald: { border: "hover:border-emerald-500/50", badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-500", btn: "bg-emerald-600", btnHover: "hover:bg-emerald-700", icon: "text-emerald-600 bg-emerald-50", darkIcon: "dark:text-emerald-400 dark:bg-emerald-950/50" },
+  pink:    { border: "hover:border-pink-500/50",    badge: "bg-pink-500/10 border-pink-500/20 text-pink-600 dark:text-pink-400",    dot: "bg-pink-500",    btn: "bg-pink-600",    btnHover: "hover:bg-pink-700",    icon: "text-pink-600 bg-pink-50",    darkIcon: "dark:text-pink-400 dark:bg-pink-950/50" },
+  amber:   { border: "hover:border-amber-500/50",   badge: "bg-amber-500/10 border-amber-500/20 text-amber-700 dark:text-amber-400",   dot: "bg-amber-500",   btn: "bg-amber-500",   btnHover: "hover:bg-amber-600",   icon: "text-amber-600 bg-amber-50",   darkIcon: "dark:text-amber-400 dark:bg-amber-950/50" },
+  violet:  { border: "hover:border-violet-500/50",  badge: "bg-violet-500/10 border-violet-500/20 text-violet-600 dark:text-violet-400",  dot: "bg-violet-500",  btn: "bg-violet-600",  btnHover: "hover:bg-violet-700",  icon: "text-violet-600 bg-violet-50",  darkIcon: "dark:text-violet-400 dark:bg-violet-950/50" },
 };
 ---
 
 <Layout
-  title="Cursos & Talleres con Certificado | Servicios Educativos The Number One — Atalaya, Ucayali"
-  description="Cursos de computación, ofimática, Excel, Canva y herramientas digitales con certificado de participación en Atalaya, Ucayali."
+  title="Courses & Workshops with Certificate | Educational Services The Number One — Atalaya, Ucayali"
+  description="Computing, office software, Excel, Canva and digital tools courses with participation certificate in Atalaya, Ucayali."
   navItems={navItems}
-  ctaPrimary={{ label: "Ver cursos", href: "#cursos" }}
-  footerBrand="Servicios Educativos The Number One"
-  footerBrandDescription="Formación práctica y certificada en computación y herramientas digitales para trabajadores, docentes y emprendedores en Atalaya, Ucayali."
+  ctaPrimary={{ label: "View courses", href: "#cursos" }}
+  footerBrand="Educational Services The Number One"
+  footerBrandDescription="Practical, certified training in computing and digital tools for workers, teachers and entrepreneurs in Atalaya, Ucayali."
   footerQuickLinks={footerQuickLinks}
   showModal={false}
 >
 
   <!-- ── HERO ─────────────────────────────────────── -->
   <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-violet-950 pt-36 pb-20 px-6 overflow-hidden">
-    <!-- Decoración fondo -->
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
       <div class="absolute -top-20 -right-20 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[100px]"></div>
       <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px]"></div>
     </div>
 
     <div class="relative max-w-4xl mx-auto text-center">
-      <!-- Breadcrumb -->
       <nav class="flex items-center justify-center gap-2 text-sm text-slate-400 mb-8">
-        <a href="/" class="hover:text-white transition">Inicio</a>
+        <a href="/en" class="hover:text-white transition">Home</a>
         <span>/</span>
-        <span class="text-white font-semibold">Cursos & Talleres</span>
+        <span class="text-white font-semibold">Courses & Workshops</span>
       </nav>
 
       <span class="inline-flex items-center gap-2 text-xs font-bold text-violet-300 bg-violet-500/10 border border-violet-500/20 px-4 py-1.5 rounded-full mb-6">
-        ✅ Con certificado de participación
+        ✅ With participation certificate
       </span>
 
       <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-        Cursos & Talleres<br />
+        Courses & Workshops<br />
         <span class="bg-gradient-to-r from-violet-400 to-blue-400 bg-clip-text text-transparent">
-          para el trabajo
+          for work
         </span>
       </h1>
 
       <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-        Aprende computación y herramientas digitales con clases prácticas.
-        Al finalizar recibes tu <strong class="text-white">certificado de participación</strong>.
+        Learn computing and digital tools with hands-on classes.
+        Upon completion you receive your <strong class="text-white">participation certificate</strong>.
       </p>
 
-      <!-- Stats rápidos -->
       <div class="flex flex-wrap justify-center gap-6 text-sm">
         {[
-          { val: "6",       label: "Cursos disponibles" },
-          { val: "Certif.", label: "Al finalizar"        },
-          { val: "Grupos",  label: "Reducidos"           },
-          { val: "Práctico",label: "100% aplicado"       },
+          { val: "6",        label: "Available courses" },
+          { val: "Certif.",  label: "Upon completion"   },
+          { val: "Groups",   label: "Small classes"     },
+          { val: "Practical",label: "100% applied"      },
         ].map(s => (
           <div class="text-center">
             <p class="text-2xl font-extrabold text-white">{s.val}</p>
@@ -212,16 +209,16 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
     </div>
   </section>
 
-  <!-- ── CURSOS ─────────────────────────────────────── -->
+  <!-- ── COURSES ─────────────────────────────────────── -->
   <section id="cursos" class="py-20 px-6 bg-white dark:bg-slate-950">
     <div class="max-w-6xl mx-auto">
 
       <div class="text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white mb-4">
-          Cursos disponibles
+          Available courses
         </h2>
         <p class="text-neutral-500 dark:text-slate-400 max-w-xl mx-auto">
-          Cada curso incluye clases prácticas y certificado al finalizar. Para más detalles sobre horarios y costo, escríbenos por WhatsApp.
+          Each course includes hands-on classes and a certificate upon completion. For more details on schedules and cost, message us on WhatsApp.
         </p>
       </div>
 
@@ -232,9 +229,8 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
           return (
             <div class={`group relative flex flex-col bg-white dark:bg-slate-800 border border-neutral-200 dark:border-slate-700 ${c.border} rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-900`}>
 
-              <!-- Header tarjeta -->
               <div class="flex items-start justify-between mb-5">
-                <div class={`w-12 h-12 rounded-xl ${c.icon} flex items-center justify-center text-2xl shrink-0`}>
+                <div class={`w-12 h-12 rounded-xl ${c.icon} ${c.darkIcon} flex items-center justify-center text-2xl shrink-0`}>
                   {course.emoji}
                 </div>
                 <span class={`text-xs font-bold px-3 py-1 rounded-full border ${c.badge}`}>
@@ -242,7 +238,6 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
                 </span>
               </div>
 
-              <!-- Info -->
               <h3 class="text-lg font-extrabold text-neutral-900 dark:text-white mb-2 leading-snug">
                 {course.name}
               </h3>
@@ -262,9 +257,8 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
                 {course.description}
               </p>
 
-              <!-- Módulos -->
               <div class="flex-1 mb-6">
-                <p class="text-xs font-bold text-neutral-400 dark:text-slate-500 uppercase tracking-wide mb-3">Contenido</p>
+                <p class="text-xs font-bold text-neutral-400 dark:text-slate-500 uppercase tracking-wide mb-3">Content</p>
                 <ul class="space-y-1.5">
                   {course.modules.map(m => (
                     <li class="flex items-start gap-2 text-sm text-neutral-600 dark:text-slate-300">
@@ -275,7 +269,6 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
                 </ul>
               </div>
 
-              <!-- CTA WhatsApp -->
               <a
                 href={wspUrl}
                 target="_blank"
@@ -283,7 +276,7 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
                 class={`flex items-center justify-center gap-2 w-full py-3 rounded-xl ${c.btn} ${c.btnHover} text-white font-bold text-sm transition-all duration-200`}
               >
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Me interesa este curso
+                I'm interested in this course
               </a>
             </div>
           );
@@ -292,47 +285,46 @@ const colorMap: Record<string, { border: string; badge: string; dot: string; btn
     </div>
   </section>
 
-  <!-- ── CTA CONTACTO ─────────────────────────────────────── -->
+  <!-- ── CTA CONTACT ─────────────────────────────────────── -->
   <section id="contacto" class="py-20 px-6 bg-slate-900">
     <div class="max-w-2xl mx-auto text-center">
       <span class="inline-block text-xs font-bold text-violet-400 bg-violet-500/10 border border-violet-500/20 px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
-        ¿Tienes dudas?
+        Questions?
       </span>
       <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
-        Escríbenos y te orientamos
+        Write us and we'll guide you
       </h2>
       <p class="text-slate-400 mb-10 text-lg leading-relaxed">
-        Cuéntanos qué curso te interesa y te informamos sobre horarios, grupos y costos. Atención personalizada.
+        Tell us which course interests you and we'll inform you about schedules, groups and costs. Personalized attention.
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, quiero información sobre los cursos y talleres disponibles. ¿Pueden orientarme?")}`}
+          href={`https://wa.me/${WA}?text=${encodeURIComponent("Hello, I want information about the available courses and workshops. Can you guide me?")}`}
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
         >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Escribir por WhatsApp
+          Write on WhatsApp
         </a>
         <a
-          href="/academia"
+          href="/en/academia"
           class="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
         >
-          Ver Academia
+          View Academy
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
         </a>
       </div>
 
-      <!-- Datos de contacto rápidos -->
       <div class="mt-12 pt-8 border-t border-slate-800 grid sm:grid-cols-3 gap-6 text-sm text-slate-400">
         <div>
-          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Teléfonos</p>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Phone</p>
           <p>929 469 555</p>
           <p>949 544 537</p>
         </div>
         <div>
-          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Ubicación</p>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Location</p>
           <p>Jr. Rímac Mz 23 Lt 1f</p>
           <p>Atalaya, Ucayali</p>
         </div>
