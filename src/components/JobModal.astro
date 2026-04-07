@@ -1,0 +1,91 @@
+---
+// src/components/JobModal.astro — Convocatoria laboral (secretaria/secretario)
+const lang = (Astro.currentLocale ?? "es") as "es" | "en";
+
+const t = {
+  es: {
+    badge: "Convocatoria laboral",
+    title: "Buscamos Secretaria / Secretario",
+    subtitle: "Servicios Educativos The Number One — Atalaya, Ucayali",
+    cta: "Me interesa, escribir por WhatsApp",
+    wsp: "Hola, me interesa la convocatoria para *Secretaria/Secretario* en Servicios Educativos The Number One. ¿Pueden darme más información sobre los requisitos y el proceso de postulación?",
+    close: "Cerrar",
+    noShow: "No volver a mostrar",
+  },
+  en: {
+    badge: "Job opening",
+    title: "We're looking for a Secretary",
+    subtitle: "Educational Services The Number One — Atalaya, Ucayali",
+    cta: "I'm interested, write on WhatsApp",
+    wsp: "Hello, I'm interested in the *Secretary* position at Educational Services The Number One. Can you give me more information about the requirements and application process?",
+    close: "Close",
+    noShow: "Don't show again",
+  },
+}[lang];
+
+const wspUrl = `https://wa.me/51929469555?text=${encodeURIComponent(t.wsp)}`;
+---
+
+<div id="job-backdrop" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm">
+  <div id="job-modal" class="relative bg-white dark:bg-slate-800 rounded-2xl w-full max-w-sm shadow-2xl overflow-hidden">
+
+    <!-- Botón cerrar -->
+    <button id="job-close" aria-label={t.close}
+      class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/30 hover:bg-black/50 text-white flex items-center justify-center text-sm transition-colors">
+      ✕
+    </button>
+
+    <!-- Imagen -->
+    <div class="w-full aspect-[4/5] bg-slate-100 dark:bg-slate-900 overflow-hidden">
+      <img
+        src="/anuncios/secretaria.jpeg"
+        alt="Convocatoria: Secretaria / Secretario — Servicios Educativos The Number One"
+        class="w-full h-full object-cover object-top"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Footer del modal -->
+    <div class="p-5">
+      <span class="inline-block text-xs font-bold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/40 px-3 py-1 rounded-full mb-3">
+        {t.badge}
+      </span>
+      <h2 class="text-lg font-extrabold text-gray-900 dark:text-white mb-1 leading-snug">
+        {t.title}
+      </h2>
+      <p class="text-xs text-gray-400 dark:text-slate-500 mb-4">{t.subtitle}</p>
+
+      <a
+        href={wspUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-xl text-sm transition-all mb-3"
+      >
+        <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        {t.cta}
+      </a>
+
+      <label class="flex items-center justify-center gap-2 text-xs text-gray-400 dark:text-slate-500 cursor-pointer">
+        <input type="checkbox" id="job-no-show" class="rounded" />
+        {t.noShow}
+      </label>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY      = "tno_job_v1";
+  const backdrop = document.getElementById("job-backdrop");
+  const closeBtn = document.getElementById("job-close");
+  const noShow   = document.getElementById("job-no-show") as HTMLInputElement;
+
+  if (localStorage.getItem(KEY) === "true") backdrop?.classList.add("hidden");
+
+  function close() {
+    if (noShow?.checked) localStorage.setItem(KEY, "true");
+    backdrop?.classList.add("hidden");
+  }
+  closeBtn?.addEventListener("click", close);
+  backdrop?.addEventListener("click", (e) => { if (e.target === backdrop) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+</script>

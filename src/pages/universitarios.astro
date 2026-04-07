@@ -1,0 +1,272 @@
+---
+// src/pages/universitarios.astro — Servicios Universitarios
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
+
+const navItems = [
+  { label: "Inicio",          href: "/"                },
+  { label: "Academia",        href: "/academia"        },
+  { label: "Cursos",          href: "/cursos"          },
+  { label: "Universitarios",  href: "#servicios"       },
+  { label: "Contacto",        href: "#contacto"        },
+];
+
+const footerQuickLinks = [
+  { label: "Inicio",         href: "/"                },
+  { label: "Academia",       href: "/academia"        },
+  { label: "Cursos",         href: "/cursos"          },
+  { label: "Universitarios", href: "#servicios"       },
+  { label: "Contacto",       href: "#contacto"        },
+];
+
+const WA = "51929469555";
+
+const services = [
+  {
+    id: "tesis",
+    emoji: "📝",
+    color: "blue",
+    name: "Asesoría de Tesis",
+    tag: "Proyecto de grado",
+    badge_detail: "Acompañamiento integral",
+    description:
+      "Acompañamiento completo en tu proyecto de grado: desde la elección del tema hasta la sustentación. Trabajamos con rigor académico y normas internacionales.",
+    items: [
+      "Elección y delimitación del tema de investigación",
+      "Diseño metodológico (cuantitativo / cualitativo)",
+      "Estructuración del proyecto según tu universidad",
+      "Aplicación de normas APA, Vancouver e ISO",
+      "Revisión y corrección de cada capítulo",
+      "Preparación para la sustentación",
+    ],
+    wsp: "Hola, necesito asesoría para mi *Tesis o Proyecto de Grado*. ¿Pueden orientarme sobre el proceso y costos?",
+  },
+  {
+    id: "matematicas",
+    emoji: "📐",
+    color: "emerald",
+    name: "Reforzamiento en Matemáticas",
+    tag: "Clases personalizadas",
+    badge_detail: "Nivel universitario",
+    description:
+      "Clases individualizadas en los temas más exigentes de tu carrera. Metodología práctica orientada a resolver ejercicios reales de exámenes y trabajos.",
+    items: [
+      "Cálculo Diferencial e Integral",
+      "Álgebra Lineal y Matricial",
+      "Estadística Descriptiva e Inferencial",
+      "Matemáticas para Ingeniería",
+      "Resolución de guías y prácticas calificadas",
+      "Preparación para exámenes parciales y finales",
+    ],
+    wsp: "Hola, necesito reforzamiento en *Matemáticas Universitarias*. ¿Pueden orientarme sobre disponibilidad y costos?",
+  },
+  {
+    id: "proyectos",
+    emoji: "📋",
+    color: "violet",
+    name: "Apoyo en Trabajos y Proyectos",
+    tag: "Asesoría académica",
+    badge_detail: "Reserva absoluta",
+    description:
+      "Asistencia profesional para que entregues trabajos de alta calidad y a tiempo. Absoluta reserva y compromiso con los estándares de tu institución.",
+    items: [
+      "Informes técnicos y monografías",
+      "Proyectos académicos e institucionales",
+      "Resolución de guías prácticas y laboratorios",
+      "Presentaciones ejecutivas (PPT / Canva)",
+      "Corrección de redacción y ortografía",
+      "Entrega puntual según tu fecha límite",
+    ],
+    wsp: "Hola, necesito apoyo para un *Trabajo o Proyecto Académico*. ¿Pueden orientarme sobre el proceso y costos?",
+  },
+];
+
+const colorMap: Record<string, { border: string; badge: string; dot: string; btn: string; btnHover: string; icon: string; headerBg: string }> = {
+  blue:    { border: "hover:border-blue-500/50",    badge: "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400",    dot: "bg-blue-500",    btn: "bg-blue-600",    btnHover: "hover:bg-blue-700",    icon: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-950/50",    headerBg: "from-blue-600/10" },
+  emerald: { border: "hover:border-emerald-500/50", badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-400", dot: "bg-emerald-500", btn: "bg-emerald-600", btnHover: "hover:bg-emerald-700", icon: "text-emerald-600 bg-emerald-50 dark:text-emerald-400 dark:bg-emerald-950/50", headerBg: "from-emerald-600/10" },
+  violet:  { border: "hover:border-violet-500/50",  badge: "bg-violet-500/10 border-violet-500/20 text-violet-600 dark:text-violet-400",  dot: "bg-violet-500",  btn: "bg-violet-600",  btnHover: "hover:bg-violet-700",  icon: "text-violet-600 bg-violet-50 dark:text-violet-400 dark:bg-violet-950/50",  headerBg: "from-violet-600/10" },
+};
+---
+
+<Layout
+  title="Servicios Universitarios | Asesoría de Tesis y Matemáticas — The Number One, Atalaya"
+  description="Asesoría de tesis, reforzamiento en matemáticas universitarias y apoyo en trabajos académicos. Calidad, puntualidad y reserva en Atalaya, Ucayali."
+  navItems={navItems}
+  ctaPrimary={{ label: "Solicitar asesoría", href: "#contacto" }}
+  footerBrand="Servicios Educativos The Number One"
+  footerBrandDescription="Acompañamiento académico universitario: tesis, matemáticas y proyectos. Calidad y reserva absoluta en Atalaya, Ucayali."
+  footerQuickLinks={footerQuickLinks}
+  showModal={false}
+>
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="relative bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 pt-36 pb-20 px-6 overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-20 -right-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-violet-600/10 rounded-full blur-[100px]"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+      <nav class="flex items-center justify-center gap-2 text-sm text-slate-400 mb-8">
+        <a href="/" class="hover:text-white transition">Inicio</a>
+        <span>/</span>
+        <span class="text-white font-semibold">Servicios Universitarios</span>
+      </nav>
+
+      <span class="inline-flex items-center gap-2 text-xs font-bold text-blue-300 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full mb-6">
+        🎓 Acompañamiento académico universitario
+      </span>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+        Servicios Universitarios:<br />
+        <span class="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
+          Tu Éxito Académico
+        </span>
+      </h1>
+
+      <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+        Asesoría especializada para estudiantes universitarios en Atalaya y alrededores.
+        Calidad académica, <strong class="text-white">puntualidad y absoluta reserva</strong>.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        {[
+          { val: "3",        label: "Servicios especializados" },
+          { val: "APA",      label: "Normas internacionales"   },
+          { val: "100%",     label: "Reserva absoluta"         },
+          { val: "Puntual",  label: "En tu fecha límite"       },
+        ].map(s => (
+          <div class="text-center">
+            <p class="text-2xl font-extrabold text-white">{s.val}</p>
+            <p class="text-slate-400">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS ─────────────────────────────────────── -->
+  <section id="servicios" class="py-20 px-6 bg-white dark:bg-slate-950">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white mb-4">
+          ¿En qué te podemos ayudar?
+        </h2>
+        <p class="text-neutral-500 dark:text-slate-400 max-w-xl mx-auto">
+          Asesoría personalizada para cada etapa de tu carrera universitaria. Escríbenos por WhatsApp y coordinamos una sesión.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {services.map((svc) => {
+          const c = colorMap[svc.color];
+          const wspUrl = `https://wa.me/${WA}?text=${encodeURIComponent(svc.wsp)}`;
+          return (
+            <div class={`group relative flex flex-col bg-white dark:bg-slate-800 border border-neutral-200 dark:border-slate-700 ${c.border} rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-900`}>
+
+              <!-- Header -->
+              <div class="flex items-start justify-between mb-5">
+                <div class={`w-12 h-12 rounded-xl ${c.icon} flex items-center justify-center text-2xl shrink-0`}>
+                  {svc.emoji}
+                </div>
+                <span class={`text-xs font-bold px-3 py-1 rounded-full border ${c.badge}`}>
+                  {svc.tag}
+                </span>
+              </div>
+
+              <h3 class="text-lg font-extrabold text-neutral-900 dark:text-white mb-1 leading-snug">
+                {svc.name}
+              </h3>
+              <p class="text-xs font-semibold text-neutral-400 dark:text-slate-500 mb-3 uppercase tracking-wide">
+                {svc.badge_detail}
+              </p>
+
+              <p class="text-neutral-500 dark:text-slate-400 text-sm leading-relaxed mb-5">
+                {svc.description}
+              </p>
+
+              <!-- Items -->
+              <div class="flex-1 mb-6">
+                <p class="text-xs font-bold text-neutral-400 dark:text-slate-500 uppercase tracking-wide mb-3">Incluye</p>
+                <ul class="space-y-1.5">
+                  {svc.items.map(item => (
+                    <li class="flex items-start gap-2 text-sm text-neutral-600 dark:text-slate-300">
+                      <span class={`w-1.5 h-1.5 rounded-full ${c.dot} mt-1.5 shrink-0`}></span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- CTA WhatsApp -->
+              <a
+                href={wspUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`flex items-center justify-center gap-2 w-full py-3 rounded-xl ${c.btn} ${c.btnHover} text-white font-bold text-sm transition-all duration-200`}
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Solicitar asesoría
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA CONTACTO ─────────────────────────────────────── -->
+  <section id="contacto" class="py-20 px-6 bg-slate-900">
+    <div class="max-w-2xl mx-auto text-center">
+      <span class="inline-block text-xs font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
+        ¿Listo para empezar?
+      </span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-4">
+        Solicitar Asesoría Personalizada
+      </h2>
+      <p class="text-slate-400 mb-10 text-lg leading-relaxed">
+        Cuéntanos en qué etapa estás y te orientamos. Respuesta rápida, atención directa y soluciones a tu medida.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={`https://wa.me/${WA}?text=${encodeURIComponent("Hola, necesito asesoría universitaria. ¿Pueden orientarme sobre los servicios disponibles y costos?")}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a
+          href="/academia"
+          class="inline-flex items-center justify-center gap-2 border border-slate-700 hover:border-blue-500 text-slate-300 hover:text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 text-base"
+        >
+          Ver Academia
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-slate-800 grid sm:grid-cols-3 gap-6 text-sm text-slate-400">
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Teléfonos</p>
+          <p>929 469 555</p>
+          <p>949 544 537</p>
+        </div>
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Ubicación</p>
+          <p>Jr. Rímac Mz 23 Lt 1f</p>
+          <p>Atalaya, Ucayali</p>
+        </div>
+        <div>
+          <p class="text-slate-500 text-xs uppercase tracking-wide mb-1">Email</p>
+          <a href="mailto:sethenumberone@gmail.com" class="hover:text-white transition break-all">
+            sethenumberone@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
