@@ -22,6 +22,10 @@ const labels = {
   en: { whatsapp: "WhatsApp", langSwitch: "ES" },
 }[lang as "es" | "en"];
 
+const isAcademia = path === "/academia" || path === "/en/academia";
+const logoSrc = isAcademia ? "/Logo Academia SF.png" : "/se_logo-sf.png";
+const logoAlt = isAcademia ? "Academia The Number One — Atalaya, Ucayali" : "Servicios Educativos The Number One";
+
 const {
   navItems = lang === "en"
     ? [
@@ -51,8 +55,8 @@ const {
     <!-- Logo -->
     <a href={lang === "en" ? "/en" : "/"} class="shrink-0 transition-opacity hover:opacity-80">
       <img
-        src="/Logo Academia SF.png"
-        alt="Academia The Number One — Atalaya, Ucayali"
+        src={logoSrc}
+        alt={logoAlt}
         width="160" height="56"
         class="h-12 w-auto dark:brightness-125"
       />
@@ -161,7 +165,7 @@ const {
   <div id="mobile-panel" class="absolute right-0 top-0 h-full w-4/5 max-w-xs bg-white dark:bg-slate-900 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
 
     <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-100 dark:border-slate-700">
-      <img src="/Logo Academia SF.png" alt="Academia The Number One" width="130" height="46" class="h-10 w-auto dark:brightness-125" />
+      <img src={logoSrc} alt={logoAlt} width="130" height="46" class="h-10 w-auto dark:brightness-125" />
       <button id="close-btn" aria-label="Cerrar menú" class="w-9 h-9 flex items-center justify-center rounded-xl bg-neutral-100 dark:bg-slate-700 hover:bg-neutral-200 dark:hover:bg-slate-600 transition-colors">
         <Icon name="heroicons:x-mark" class="w-5 h-5 text-neutral-700 dark:text-slate-300" />
       </button>
