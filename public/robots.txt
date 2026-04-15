@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tno-academy.vercel.app/sitemap-index.xml
+Disallow: /_astro/
+Disallow: /_image
+Disallow: /404
+
+Sitemap: https://thenumberone.com.pe/sitemap-index.xml
